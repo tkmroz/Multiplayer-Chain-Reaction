@@ -10,8 +10,6 @@ public class Ball implements Serializable{
     private Color ballColor;
     private final int maxValue;
     private int value;
-    private int horizontalLine;
-    private int verticalLine;
     private final static long serialVersionUID = 123456789;
     private Color boardColor;
 
@@ -33,14 +31,6 @@ public class Ball implements Serializable{
         }
     }
 
-    public int getVerticalLine() {
-        return verticalLine;
-    }
-
-    public int getHorizontalLine() {
-        return horizontalLine;
-    }
-
     public int getValue() {
         return value;
     }
@@ -54,14 +44,6 @@ public class Ball implements Serializable{
     }
 
     public Color getBoardColor(){ return boardColor; }
-
-    public void setHorizontalLine(int h) {
-        horizontalLine = h;
-    }
-
-    public void setVerticalLine(int v) {
-        verticalLine = v;
-    }
 
     public void setValue(int v) {
         value = v;
