@@ -12,12 +12,20 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 //End goal is to have 5x8, 10x11 and HD all in one game, which only depends on which prefs are selected
+
+/**
+ * @author Tomasz Mroz
+ * @version 0.1
+ * Client program for Multiplayer Chain Reaction
+ * Needs a valid server ip as an command line argument
+ * Allows a user to choose a preferred game size, which needs to be the same as the server
+ */
 public class ChainReactionClient extends Client{
     private final static int PORT = 37829;
     private Ball[][] board;
     private static int width = 625;
     private static int height = 700;
-    private static int down = 35;
+    private static int down;
     private static int length = (int) (width * .06);
     private static Frame frame;
     private volatile static DrawingLoop loop;
@@ -45,7 +53,7 @@ public class ChainReactionClient extends Client{
             synchronized (monitor){
                 monitor.wait();
             }
-            new ChainReactionClient("10.0.0.50");
+            new ChainReactionClient(args[0]);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -63,7 +71,7 @@ public class ChainReactionClient extends Client{
         verticalLines.add(length);
     }
     private static void selector(){
-        Frame frame = new Frame("Chain Reaction");
+        Frame frame = new Frame();
         JPanel content = new JPanel();
         frame.setContentPane(content);
         content.setLayout(null);
@@ -97,12 +105,14 @@ public class ChainReactionClient extends Client{
             handshake = "normal";
             rowNumber = 11;
             columnNumber = 11;
+            down = 65;
             startUp(.08,.08);
         }
         else if(HDRadio.isSelected()){
             handshake = "HD";
             rowNumber = 10;
             columnNumber = 15;
+            down = 35;
             startUp(.09, .07);
         }
         else{
@@ -113,16 +123,6 @@ public class ChainReactionClient extends Client{
 
     @Override
     protected void messageReceived(Object message) {
-        /*if(!isChosen){
-            synchronized (monitor){
-                try {
-                    monitor.wait();
-                }
-                catch (Exception e){
-                    e.printStackTrace();
-                }
-            }
-        }*/
         if (message instanceof Ball[][]) {
             if (frame != null){ frame.dispose(); }
             board = (Ball[][]) message;
@@ -174,7 +174,7 @@ public class ChainReactionClient extends Client{
             for (int x = 0; x < columnNumber; x++) {
                 g.drawLine(verticalLines.get(0) ,  horizontalLines.get(x) , verticalLines.get(verticalLines.size() - 1) , horizontalLines.get(x) );
             }
-            g.drawLine(verticalLines.get(0), down, verticalLines.get(verticalLines.size() - 1), down);
+            //g.drawLine(verticalLines.get(0), down, verticalLines.get(verticalLines.size() - 1), down);
             g.drawLine(verticalLines.get(verticalLines.size() - 1) , horizontalLines.get(0) , verticalLines.get(verticalLines.size() - 1) , horizontalLines.get(horizontalLines.size() - 1));
             for (int x = 0; x < board.length; x++) {
                 for (int y = 0; y < board[0].length; y++) {
@@ -206,6 +206,13 @@ public class ChainReactionClient extends Client{
             this.setResizable(false);
             this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         }
+        Frame(){
+            this.setLocation(150, 0);
+            this.setVisible(true);
+            this.setResizable(false);
+            this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        }
+
     }
 
     private class MouseLoop implements MouseListener{
