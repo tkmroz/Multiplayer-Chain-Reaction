@@ -13,21 +13,18 @@ public class Ball implements Serializable{
     private final static long serialVersionUID = 123456789;
     private Color boardColor;
 
-    public Ball(String type) {
+    Ball(String type) {
+        value = 0;
         switch (type) {
             case "Corner":
                 maxValue = 2;
-                value = 0;
                 break;
             case "Edge":
                 maxValue = 3;
-                value = 0;
                 break;
             default:
                 maxValue = 4;
-                value = 0;
                 break;
-
         }
     }
 

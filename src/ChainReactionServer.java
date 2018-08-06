@@ -16,6 +16,7 @@ public class ChainReactionServer extends Hub {
     private Integer currentPlayer = 1;
     private Ball[][] board;
     private LinkedBlockingQueue<ExplodeEvent> explodeQueue;
+    private static String handshake;
 
     private ChainReactionServer() throws IOException {
         super(PORT);
@@ -23,6 +24,7 @@ public class ChainReactionServer extends Hub {
     }
 
     public static void main(String[] args) {
+        handshake = args[0];
         try {
             server = new ChainReactionServer();
         } catch (IOException e) {
@@ -35,10 +37,7 @@ public class ChainReactionServer extends Hub {
     protected void messageReceived(int playerID, Object message) {
         if (message instanceof Ball[][]) {
             board = (Ball[][]) message;
-            /*int locationX = evt.getX();
-            System.out.println("X: " + locationX);
-            int locationY = evt.getY();
-            System.out.println("Y: " + locationY);*/
+            playerHashMap.get(IDHashMap.get(currentPlayer)).setHasPlayed(true);
             ballPlacer();
             if (currentPlayer == playerCount) {
                 currentPlayer = 1;
@@ -48,7 +47,6 @@ public class ChainReactionServer extends Hub {
             board[0][0].setBoardColor(playerHashMap.get(IDHashMap.get(currentPlayer)).getPlayerColor());
             gameLoop();
         }
-
     }
 
     private void gameLoop() {
@@ -59,13 +57,12 @@ public class ChainReactionServer extends Hub {
 
     protected void playerConnected(int playerID) {
         try {
-            super.extraHandshake(playerID,null, null);
+            super.extraHandshake(playerID, null, null);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        catch (Exception e){
 
-        }
-
-        Player player = new Player("TOM", playerCount);
+        Player player = new Player( playerCount);
         IDHashMap.put(playerCount + 1, playerID);
         playerHashMap.put(playerID, player);
         playerCount++;
@@ -80,13 +77,23 @@ public class ChainReactionServer extends Hub {
     }
 
     private void startNewGame() {
-        board = new Ball[11][11];
-        for (int x = 0; x < 11; x++) {
-            for (int y = 0; y < 11; y++) {
+        switch (handshake) {
+            case "classic":
+                board = new Ball[8][5];
+                break;
+            case "normal":
+                board = new Ball[11][11];
+                break;
+            case "HD":
+                board = new Ball[15][10];
+                break;
+        }
+        for (int x = 0; x < board.length; x++) {
+            for (int y = 0; y < board[0].length; y++) {
                 if ((x == 0 && y == 0) || (x == 0 && y == (board[0].length - 1)) || (x == (board.length - 1) && y == 0) || (x == (board.length - 1) && y == (board[0].length - 1))) {
                     board[x][y] = new Ball("Corner");
 
-                } else if ((x != 0 && x != (board.length - 1) && y == 0) || (x != 0 && x != (board.length - 1) && y == (board[0].length - 1)) || (x == 0 && y != 0 && y != (board[0].length - 1)) || (x == (board.length - 1) && y != 0 && y != (board[0].length - 1))) {
+                } else if ((x != 0 && x != (board.length - 1) && y == 0) || (x != 0 && x != (board.length - 1) && y == (board[0].length - 1)) || (x == 0 && y != (board[0].length - 1)) || (x == (board.length - 1) && y != 0 && y != (board[0].length - 1))) {
                     board[x][y] = new Ball("Edge");
                 } else {
                     board[x][y] = new Ball("Middle");
@@ -98,8 +105,8 @@ public class ChainReactionServer extends Hub {
 
     private void ballPlacer() {
         explodeQueue = new LinkedBlockingQueue<>();
-        for (int a = 0; a < 11; a++) {
-            for (int b = 0; b < 11; b++) {
+        for (int a = 0; a < board.length; a++) {
+            for (int b = 0; b < board[0].length; b++) {
                 if ((board[a][b].getValue() >= board[a][b].getMaxValue())) {
                     explodeQueue.add(new ExplodeEvent(a, b));
                 }
@@ -108,6 +115,9 @@ public class ChainReactionServer extends Hub {
         while (explodeQueue.size() != 0) {
             explode(explodeQueue.peek().getX(), explodeQueue.peek().getY());
             explodeQueue.poll();
+        }
+        if (isGameOver()) {
+
         }
     }
 
@@ -270,12 +280,41 @@ public class ChainReactionServer extends Hub {
     @Override
     protected void extraHandshake(int playerID, ObjectInputStream in, ObjectOutputStream out) throws IOException {
         try {
-            if (!(in.readObject().equals("Normal"))){
+            if (!in.readObject().equals(handshake)) {
                 throw new IOException();
             }
-        }
-        catch (ClassNotFoundException c){
+        } catch (ClassNotFoundException c) {
             c.printStackTrace();
         }
+    }
+
+    private boolean isGameOver() {
+        /*HashMap<Player, Integer> playerEnd = new HashMap<>();
+        for(int a = 0; a < playerCount; a++){
+            playerEnd.put( playerHashMap.get(IDHashMap.get(a)), 0);
+        }
+        for (int x = 0; x < playerHashMap.get(0).getColors().size() - 1; x++) {
+            for (int a = 0; a < board.length; a++) {
+                for (int b = 0; b < board[0].length; b++) {
+                    if (board[a][b].getBallColor() != null) {
+                        if ((board[a][b].getBallColor().equals(new Player( -1).getColors().get(x)))) {
+                            int y = playerEnd.get(new Player(x));
+                            playerEnd.remove(new Player(x));
+                            playerEnd.put( playerHashMap.get(IDHashMap.get(a + 1)), y++);
+                        }
+                    }
+                }
+            }
+        }
+        for (int x = 0; x < playerCount; x++){
+            //Player player = playerEnd.get(playerHashMap.get(IDHashMap.get(x)));
+            //if(playerEnd)
+        }
+        if () {
+        } else {
+            return false;
+        }
+    */
+        return true;
     }
 }
