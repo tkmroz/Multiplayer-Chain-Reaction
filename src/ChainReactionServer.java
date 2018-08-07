@@ -17,12 +17,15 @@ public class ChainReactionServer extends Hub {
     private Ball[][] board;
     private LinkedBlockingQueue<ExplodeEvent> explodeQueue;
     private static String handshake;
+    private LinkedBlockingQueue<BallEvent> ballQueue  = new LinkedBlockingQueue<>();
 
     private ChainReactionServer() throws IOException {
         super(PORT);
         setAutoreset(true);
     }
-
+    private Color getPlayerColor(){
+        return playerHashMap.get(IDHashMap.get(currentPlayer)).getPlayerColor();
+    }
     public static void main(String[] args) {
         handshake = args[0];
         try {
@@ -44,7 +47,7 @@ public class ChainReactionServer extends Hub {
             } else {
                 currentPlayer++;
             }
-            board[0][0].setBoardColor(playerHashMap.get(IDHashMap.get(currentPlayer)).getPlayerColor());
+            board[0][0].setBoardColor(getPlayerColor());
             gameLoop();
         }
     }
@@ -52,6 +55,7 @@ public class ChainReactionServer extends Hub {
     private void gameLoop() {
         sendToAll(board);
         sendToOne(currentPlayer, currentPlayer.toString());
+        ballQueue.clear();
     }
 
 
@@ -141,6 +145,7 @@ public class ChainReactionServer extends Hub {
      * @param b b place in the array of the explosion
      */
     private void explode(int a, int b) {
+        ballQueue.add(new BallEvent(a, b, board[a][b].getMaxValue(),getPlayerColor()));
         board[a][b].setValue(0);
         if (board[a][b].getMaxValue() == 2) {
             if ((a == 0 && b == 0)) {
