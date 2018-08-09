@@ -7,13 +7,14 @@ import java.util.ArrayList;
  * Defined variables for Players
  */
 public class Player {
-    private final String playerName;
+    //private final String playerName;
     private final Color playerColor;
     private final Integer playerNumber;
     private static ArrayList<Color> colors = new ArrayList<>(9);
+    private boolean hasPlayed;
 
 
-    public Player(String name,Integer number){
+    Player(Integer number){
         colors.add(Color.RED);
         colors.add(new Color(0, 120, 0));
         colors.add(Color.BLUE);
@@ -23,18 +24,28 @@ public class Player {
         colors.add(Color.MAGENTA);
         colors.add(new Color(128,214,255));
         colors.add(Color.BLACK);
-        playerName = name;
+        //playerName = name;
         playerColor = colors.get(number);
         playerNumber = number;
+        hasPlayed = false;
     }
-    public String getPlayerName(){
-        return playerName;
-    }
+    //public String getPlayerName(){
+        //return playerName;
+    //}
 
     public Color getPlayerColor() {
         return playerColor;
     }
 
     public Integer getPlayerNumber(){ return  playerNumber;}
+    public ArrayList<Color> getColors(){
+        return colors;
+    }
+    public void setHasPlayed(boolean b){
+        hasPlayed = true;
+    }
+    public boolean isHasPlayed(){
+        return hasPlayed;
+    }
 
 }
