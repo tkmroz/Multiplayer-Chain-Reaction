@@ -11,8 +11,8 @@ public class MovingBall extends Ball {
     public int getyLocation() {
         return yLocation;
     }
-    public void setyLocation(int yLocation) {
-        this.yLocation = yLocation;
+    public void setyLocation(int y) {
+        yLocation = y;
     }
     public int getxLocation() {
         return xLocation;

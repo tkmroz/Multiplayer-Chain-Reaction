@@ -63,4 +63,5 @@ public class BallEvent {
     public String getType(){
         return type;
     }
+    private void bs(){}
 }
