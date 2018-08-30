@@ -3,6 +3,20 @@
   <component name="ChangeListManager">
     <list default="true" id="7c1259c2-471d-4725-a09d-f67a632f054a" name="Default" comment="Removed timer&#10;Changed ball printing&#10;Added new class">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/out/production/Multiplayer Chain Reaction/Ball.class" afterPath="$PROJECT_DIR$/out/production/Multiplayer Chain Reaction/Ball.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/Multiplayer Chain Reaction/ChainReactionClient$DrawingLoop.class" afterPath="$PROJECT_DIR$/out/production/Multiplayer Chain Reaction/ChainReactionClient$DrawingLoop.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/Multiplayer Chain Reaction/ChainReactionClient$Frame.class" afterPath="$PROJECT_DIR$/out/production/Multiplayer Chain Reaction/ChainReactionClient$Frame.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/Multiplayer Chain Reaction/ChainReactionClient$MouseLoop.class" afterPath="$PROJECT_DIR$/out/production/Multiplayer Chain Reaction/ChainReactionClient$MouseLoop.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/Multiplayer Chain Reaction/ChainReactionClient.class" afterPath="$PROJECT_DIR$/out/production/Multiplayer Chain Reaction/ChainReactionClient.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/Multiplayer Chain Reaction/ChainReactionServer$ExplodeEvent.class" afterPath="$PROJECT_DIR$/out/production/Multiplayer Chain Reaction/ChainReactionServer$ExplodeEvent.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/Multiplayer Chain Reaction/ChainReactionServer.class" afterPath="$PROJECT_DIR$/out/production/Multiplayer Chain Reaction/ChainReactionServer.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/Multiplayer Chain Reaction/Player.class" afterPath="$PROJECT_DIR$/out/production/Multiplayer Chain Reaction/Player.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/Multiplayer Chain Reaction/idk.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/Ball.java" afterPath="$PROJECT_DIR$/src/Ball.java" />
+      <change beforePath="$PROJECT_DIR$/src/ChainReactionClient.java" afterPath="$PROJECT_DIR$/src/ChainReactionClient.java" />
+      <change beforePath="$PROJECT_DIR$/src/ChainReactionServer.java" afterPath="$PROJECT_DIR$/src/ChainReactionServer.java" />
+      <change beforePath="$PROJECT_DIR$/src/Player.java" afterPath="$PROJECT_DIR$/src/Player.java" />
+      <change beforePath="$PROJECT_DIR$/src/idk.java" afterPath="" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="../../../User1/" />
@@ -21,20 +35,19 @@
       <file leaf-file-name="ChainReactionServer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ChainReactionServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1037">
-              <caret line="61" column="48" lean-forward="false" selection-start-line="61" selection-start-column="48" selection-end-line="61" selection-end-column="48" />
+            <state relative-caret-position="17">
+              <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#842#843#0" expanded="true" />
-                <element signature="e#929#930#0" expanded="true" />
                 <element signature="docComment;method#doesExplode#0;class#ChainReactionServer#0" expanded="false" />
                 <element signature="docComment;method#explode#0;class#ChainReactionServer#0" expanded="false" />
+                <element signature="method#explode#0;class#ChainReactionServer#0" expanded="false" />
                 <element signature="docComment;class#ExplodeEvent#0;class#ChainReactionServer#0" expanded="false" />
                 <element signature="class#ExplodeEvent#0;class#ChainReactionServer#0" expanded="false" />
-                <element signature="e#10288#10289#0" expanded="true" />
-                <element signature="e#10320#10321#0" expanded="true" />
-                <element signature="e#10342#10343#0" expanded="true" />
-                <element signature="e#10374#10375#0" expanded="true" />
+                <element signature="e#10169#10170#0" expanded="true" />
+                <element signature="e#10201#10202#0" expanded="true" />
+                <element signature="e#10223#10224#0" expanded="true" />
+                <element signature="e#10255#10256#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -43,18 +56,21 @@
       <file leaf-file-name="Ball.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Ball.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="33" column="27" lean-forward="false" selection-start-line="33" selection-start-column="27" selection-end-line="33" selection-end-column="27" />
+            <state relative-caret-position="17">
+              <caret line="10" column="27" lean-forward="false" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="27" />
               <folding>
-                <element signature="e#853#854#0" expanded="true" />
-                <element signature="e#888#889#0" expanded="true" />
-                <element signature="e#920#921#0" expanded="true" />
-                <element signature="e#952#953#0" expanded="true" />
-                <element signature="e#983#984#0" expanded="true" />
-                <element signature="e#1074#1075#0" expanded="true" />
-                <element signature="e#1099#1100#0" expanded="true" />
-                <element signature="e#1140#1141#0" expanded="true" />
-                <element signature="e#1169#1170#0" expanded="true" />
+                <element signature="e#807#808#0" expanded="true" />
+                <element signature="e#832#833#0" expanded="true" />
+                <element signature="e#861#862#0" expanded="true" />
+                <element signature="e#889#890#0" expanded="true" />
+                <element signature="e#924#925#0" expanded="true" />
+                <element signature="e#956#957#0" expanded="true" />
+                <element signature="e#988#989#0" expanded="true" />
+                <element signature="e#1019#1020#0" expanded="true" />
+                <element signature="e#1110#1111#0" expanded="true" />
+                <element signature="e#1135#1136#0" expanded="true" />
+                <element signature="e#1176#1177#0" expanded="true" />
+                <element signature="e#1205#1206#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -63,17 +79,23 @@
       <file leaf-file-name="BallEvent.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/BallEvent.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="32" column="7" lean-forward="false" selection-start-line="32" selection-start-column="7" selection-end-line="32" selection-end-column="7" />
+            <state relative-caret-position="85">
+              <caret line="5" column="25" lean-forward="true" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
               <folding>
-                <element signature="e#428#429#0" expanded="true" />
-                <element signature="e#457#458#0" expanded="true" />
-                <element signature="e#487#488#0" expanded="true" />
-                <element signature="e#516#517#0" expanded="true" />
-                <element signature="e#673#674#0" expanded="true" />
-                <element signature="e#705#706#0" expanded="true" />
-                <element signature="e#754#755#0" expanded="true" />
-                <element signature="e#796#797#0" expanded="true" />
+                <element signature="e#726#727#0" expanded="true" />
+                <element signature="e#755#756#0" expanded="true" />
+                <element signature="e#785#786#0" expanded="true" />
+                <element signature="e#814#815#0" expanded="true" />
+                <element signature="e#971#972#0" expanded="true" />
+                <element signature="e#1003#1004#0" expanded="true" />
+                <element signature="e#1052#1053#0" expanded="true" />
+                <element signature="e#1094#1095#0" expanded="true" />
+                <element signature="e#1127#1128#0" expanded="true" />
+                <element signature="e#1159#1160#0" expanded="true" />
+                <element signature="e#1206#1207#0" expanded="true" />
+                <element signature="e#1248#1249#0" expanded="true" />
+                <element signature="e#1277#1278#0" expanded="true" />
+                <element signature="e#1304#1305#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -82,21 +104,21 @@
       <file leaf-file-name="ChainReactionClient.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ChainReactionClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="629">
-              <caret line="477" column="102" lean-forward="false" selection-start-line="477" selection-start-column="102" selection-end-line="477" selection-end-column="102" />
+            <state relative-caret-position="425">
+              <caret line="339" column="21" lean-forward="false" selection-start-line="339" selection-start-column="21" selection-end-line="339" selection-end-column="21" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#startUp#0;class#ChainReactionClient#0" expanded="false" />
                 <element signature="method#selector#0;class#ChainReactionClient#0" expanded="false" />
                 <element signature="method#setValues#0;class#ChainReactionClient#0" expanded="false" />
                 <element signature="method#createWindow#0;class#ChainReactionClient#0" expanded="false" />
-                <element signature="e#22197#22198#0" expanded="true" />
-                <element signature="e#22230#22231#0" expanded="true" />
-                <element signature="e#22264#22265#0" expanded="true" />
-                <element signature="e#22303#22304#0" expanded="true" />
+                <element signature="e#14535#14536#0" expanded="true" />
+                <element signature="e#14568#14569#0" expanded="true" />
+                <element signature="e#14602#14603#0" expanded="true" />
+                <element signature="e#14641#14642#0" expanded="true" />
                 <element signature="class#MouseLoop#0;class#ChainReactionClient#0" expanded="false" />
-                <element signature="e#23042#23043#0" expanded="true" />
-                <element signature="e#23080#23081#0" expanded="true" />
+                <element signature="e#15380#15381#0" expanded="true" />
+                <element signature="e#15418#15419#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -105,19 +127,19 @@
       <file leaf-file-name="MovingBall.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/MovingBall.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="5" lean-forward="false" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
+            <state relative-caret-position="289">
+              <caret line="17" column="25" lean-forward="true" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
               <folding>
-                <element signature="e#127#128#0" expanded="true" />
-                <element signature="e#154#155#0" expanded="true" />
-                <element signature="e#187#188#0" expanded="true" />
-                <element signature="e#219#220#0" expanded="true" />
-                <element signature="e#265#266#0" expanded="true" />
-                <element signature="e#307#308#0" expanded="true" />
-                <element signature="e#339#340#0" expanded="true" />
-                <element signature="e#371#372#0" expanded="true" />
-                <element signature="e#417#418#0" expanded="true" />
-                <element signature="e#459#460#0" expanded="true" />
+                <element signature="e#176#177#0" expanded="true" />
+                <element signature="e#203#204#0" expanded="true" />
+                <element signature="e#236#237#0" expanded="true" />
+                <element signature="e#268#269#0" expanded="true" />
+                <element signature="e#314#315#0" expanded="true" />
+                <element signature="e#356#357#0" expanded="true" />
+                <element signature="e#388#389#0" expanded="true" />
+                <element signature="e#420#421#0" expanded="true" />
+                <element signature="e#466#467#0" expanded="true" />
+                <element signature="e#508#509#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -126,13 +148,13 @@
       <file leaf-file-name="Player.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Player.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="697">
-              <caret line="46" column="21" lean-forward="false" selection-start-line="46" selection-start-column="21" selection-end-line="46" selection-end-column="21" />
+            <state relative-caret-position="85">
+              <caret line="7" column="3" lean-forward="true" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
               <folding>
-                <element signature="e#1124#1125#0" expanded="true" />
-                <element signature="e#1156#1157#0" expanded="true" />
-                <element signature="e#1190#1191#0" expanded="true" />
-                <element signature="e#1222#1223#0" expanded="true" />
+                <element signature="e#936#937#0" expanded="true" />
+                <element signature="e#967#968#0" expanded="true" />
+                <element signature="e#1010#1011#0" expanded="true" />
+                <element signature="e#1039#1040#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -149,7 +171,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>extra</find>
       <find>reac</find>
       <find>mouse eve</find>
       <find>repaint</find>
@@ -179,11 +200,11 @@
       <find>, Color.BLACK</find>
       <find>ballQueue.peek().getBallColor()</find>
       <find>board</find>
+      <find>IDHAS</find>
     </findStrings>
     <replaceStrings>
       <replace>horizontalLines.get(y)</replace>
       <replace>gradientPaint</replace>
-      <replace>ballColor</replace>
       <replace>ballColor</replace>
     </replaceStrings>
   </component>
@@ -219,12 +240,12 @@
         <option value="$PROJECT_DIR$/src/idk.java" />
         <option value="$PROJECT_DIR$/src/netgame/common/Client.java" />
         <option value="$PROJECT_DIR$/../ChainReaction/ChainReaction.java" />
-        <option value="$PROJECT_DIR$/src/Player.java" />
         <option value="$PROJECT_DIR$/../Chain Reaction/src/ChainReaction.java" />
-        <option value="$PROJECT_DIR$/src/BallEvent.java" />
-        <option value="$PROJECT_DIR$/src/ChainReactionServer.java" />
-        <option value="$PROJECT_DIR$/src/Ball.java" />
         <option value="$PROJECT_DIR$/src/MovingBall.java" />
+        <option value="$PROJECT_DIR$/src/BallEvent.java" />
+        <option value="$PROJECT_DIR$/src/Ball.java" />
+        <option value="$PROJECT_DIR$/src/Player.java" />
+        <option value="$PROJECT_DIR$/src/ChainReactionServer.java" />
         <option value="$PROJECT_DIR$/src/ChainReactionClient.java" />
       </list>
     </option>
@@ -253,11 +274,11 @@
     <panes />
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ChainReaction" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/BallEvent.java" />
     <property name="project.structure.last.edited" value="Problems" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="tasks" />
+    <property name="settings.editor.selected.configurable" value="project.propGUI" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -438,7 +459,7 @@
       <created>1519268504700</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1533666941101</updated>
+      <updated>1533742321090</updated>
     </task>
     <task id="LOCAL-00001" summary="Pushin it in">
       <created>1530925985348</created>
@@ -491,16 +512,23 @@
     </task>
     <task id="LOCAL-00008" summary="Finish Animations">
       <branch name="Animations" repository="C:\Users\User1\IdeaProjects\Multiplayer-Chain-Reaction" />
-      <changelist id="" name="Finish Animations" comment="" />
       <created>1533666924516</created>
       <option name="number" value="00008" />
       <option name="presentableId" value="LOCAL-00008" />
       <option name="project" value="LOCAL" />
-      <updated>1533666940860</updated>
+      <updated>1533742320930</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Removed timer&#10;Changed ball printing&#10;Added new class">
+      <created>1533667037259</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1533667037259</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <option name="createBranch" value="false" />
     <option name="useBranch" value="true" />
+    <option name="commitChanges" value="false" />
     <servers>
       <GitHub shared="false" url="https://github.com">
         <option name="assignedIssuesOnly" value="false" />
@@ -526,13 +554,14 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.49707174" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.50292826" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32843137" sideWeight="0.50292826" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29248366" sideWeight="0.49121523" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293718" sideWeight="0.4969743" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -541,16 +570,15 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38235295" sideWeight="0.4969743" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.49707174" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329429" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -624,14 +652,15 @@
     <MESSAGE value="Clients can be HD or normal&#10;Need classic and better placing" />
     <MESSAGE value="Servers can be HD or normal&#10;Need classic and better placing" />
     <MESSAGE value="Animations" />
-    <option name="LAST_COMMIT_MESSAGE" value="Animations" />
+    <MESSAGE value="Removed timer&#10;Changed ball printing&#10;Added new class" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed timer&#10;Changed ball printing&#10;Added new class" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="80" />
+      <option name="time" value="86" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -655,13 +684,13 @@
             <element signature="method#selector#0;class#ChainReactionClient#0" expanded="false" />
             <element signature="method#setValues#0;class#ChainReactionClient#0" expanded="false" />
             <element signature="method#createWindow#0;class#ChainReactionClient#0" expanded="false" />
-            <element signature="e#22197#22198#0" expanded="true" />
-            <element signature="e#22230#22231#0" expanded="true" />
-            <element signature="e#22264#22265#0" expanded="true" />
-            <element signature="e#22303#22304#0" expanded="true" />
+            <element signature="e#14535#14536#0" expanded="true" />
+            <element signature="e#14568#14569#0" expanded="true" />
+            <element signature="e#14602#14603#0" expanded="true" />
+            <element signature="e#14641#14642#0" expanded="true" />
             <element signature="class#MouseLoop#0;class#ChainReactionClient#0" expanded="false" />
-            <element signature="e#23042#23043#0" expanded="true" />
-            <element signature="e#23080#23081#0" expanded="true" />
+            <element signature="e#15380#15381#0" expanded="true" />
+            <element signature="e#15418#15419#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -672,16 +701,15 @@
           <caret line="52" column="0" lean-forward="false" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#842#843#0" expanded="true" />
-            <element signature="e#929#930#0" expanded="true" />
             <element signature="docComment;method#doesExplode#0;class#ChainReactionServer#0" expanded="false" />
             <element signature="docComment;method#explode#0;class#ChainReactionServer#0" expanded="false" />
+            <element signature="method#explode#0;class#ChainReactionServer#0" expanded="false" />
             <element signature="docComment;class#ExplodeEvent#0;class#ChainReactionServer#0" expanded="false" />
             <element signature="class#ExplodeEvent#0;class#ChainReactionServer#0" expanded="false" />
-            <element signature="e#10288#10289#0" expanded="true" />
-            <element signature="e#10320#10321#0" expanded="true" />
-            <element signature="e#10342#10343#0" expanded="true" />
-            <element signature="e#10374#10375#0" expanded="true" />
+            <element signature="e#10169#10170#0" expanded="true" />
+            <element signature="e#10201#10202#0" expanded="true" />
+            <element signature="e#10223#10224#0" expanded="true" />
+            <element signature="e#10255#10256#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -712,13 +740,13 @@
             <element signature="method#selector#0;class#ChainReactionClient#0" expanded="false" />
             <element signature="method#setValues#0;class#ChainReactionClient#0" expanded="false" />
             <element signature="method#createWindow#0;class#ChainReactionClient#0" expanded="false" />
-            <element signature="e#22197#22198#0" expanded="true" />
-            <element signature="e#22230#22231#0" expanded="true" />
-            <element signature="e#22264#22265#0" expanded="true" />
-            <element signature="e#22303#22304#0" expanded="true" />
+            <element signature="e#14535#14536#0" expanded="true" />
+            <element signature="e#14568#14569#0" expanded="true" />
+            <element signature="e#14602#14603#0" expanded="true" />
+            <element signature="e#14641#14642#0" expanded="true" />
             <element signature="class#MouseLoop#0;class#ChainReactionClient#0" expanded="false" />
-            <element signature="e#23042#23043#0" expanded="true" />
-            <element signature="e#23080#23081#0" expanded="true" />
+            <element signature="e#15380#15381#0" expanded="true" />
+            <element signature="e#15418#15419#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -729,16 +757,15 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#842#843#0" expanded="true" />
-            <element signature="e#929#930#0" expanded="true" />
             <element signature="docComment;method#doesExplode#0;class#ChainReactionServer#0" expanded="false" />
             <element signature="docComment;method#explode#0;class#ChainReactionServer#0" expanded="false" />
+            <element signature="method#explode#0;class#ChainReactionServer#0" expanded="false" />
             <element signature="docComment;class#ExplodeEvent#0;class#ChainReactionServer#0" expanded="false" />
             <element signature="class#ExplodeEvent#0;class#ChainReactionServer#0" expanded="false" />
-            <element signature="e#10288#10289#0" expanded="true" />
-            <element signature="e#10320#10321#0" expanded="true" />
-            <element signature="e#10342#10343#0" expanded="true" />
-            <element signature="e#10374#10375#0" expanded="true" />
+            <element signature="e#10169#10170#0" expanded="true" />
+            <element signature="e#10201#10202#0" expanded="true" />
+            <element signature="e#10223#10224#0" expanded="true" />
+            <element signature="e#10255#10256#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -833,13 +860,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/netgame/common/Hub.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="456" column="0" lean-forward="false" selection-start-line="456" selection-start-column="0" selection-end-line="456" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/netgame/common/DisconnectMessage.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -858,6 +878,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="79">
           <caret line="340" column="27" lean-forward="false" selection-start-line="340" selection-start-column="24" selection-end-line="340" selection-end-column="27" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -900,114 +921,128 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="1238" column="8" lean-forward="false" selection-start-line="1238" selection-start-column="8" selection-end-line="1238" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ChainReactionServer.java">
+    <entry file="file://$PROJECT_DIR$/src/netgame/common/Hub.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1037">
-          <caret line="61" column="48" lean-forward="false" selection-start-line="61" selection-start-column="48" selection-end-line="61" selection-end-column="48" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#842#843#0" expanded="true" />
-            <element signature="e#929#930#0" expanded="true" />
-            <element signature="docComment;method#doesExplode#0;class#ChainReactionServer#0" expanded="false" />
-            <element signature="docComment;method#explode#0;class#ChainReactionServer#0" expanded="false" />
-            <element signature="docComment;class#ExplodeEvent#0;class#ChainReactionServer#0" expanded="false" />
-            <element signature="class#ExplodeEvent#0;class#ChainReactionServer#0" expanded="false" />
-            <element signature="e#10288#10289#0" expanded="true" />
-            <element signature="e#10320#10321#0" expanded="true" />
-            <element signature="e#10342#10343#0" expanded="true" />
-            <element signature="e#10374#10375#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="194">
+          <caret line="131" column="19" lean-forward="false" selection-start-line="131" selection-start-column="19" selection-end-line="131" selection-end-column="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Ball.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="33" column="27" lean-forward="false" selection-start-line="33" selection-start-column="27" selection-end-line="33" selection-end-column="27" />
+        <state relative-caret-position="17">
+          <caret line="10" column="27" lean-forward="false" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="27" />
           <folding>
-            <element signature="e#853#854#0" expanded="true" />
-            <element signature="e#888#889#0" expanded="true" />
-            <element signature="e#920#921#0" expanded="true" />
-            <element signature="e#952#953#0" expanded="true" />
-            <element signature="e#983#984#0" expanded="true" />
-            <element signature="e#1074#1075#0" expanded="true" />
-            <element signature="e#1099#1100#0" expanded="true" />
-            <element signature="e#1140#1141#0" expanded="true" />
-            <element signature="e#1169#1170#0" expanded="true" />
+            <element signature="e#807#808#0" expanded="true" />
+            <element signature="e#832#833#0" expanded="true" />
+            <element signature="e#861#862#0" expanded="true" />
+            <element signature="e#889#890#0" expanded="true" />
+            <element signature="e#924#925#0" expanded="true" />
+            <element signature="e#956#957#0" expanded="true" />
+            <element signature="e#988#989#0" expanded="true" />
+            <element signature="e#1019#1020#0" expanded="true" />
+            <element signature="e#1110#1111#0" expanded="true" />
+            <element signature="e#1135#1136#0" expanded="true" />
+            <element signature="e#1176#1177#0" expanded="true" />
+            <element signature="e#1205#1206#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/BallEvent.java">
+    <entry file="file://$PROJECT_DIR$/src/ChainReactionServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="32" column="7" lean-forward="false" selection-start-line="32" selection-start-column="7" selection-end-line="32" selection-end-column="7" />
+        <state relative-caret-position="17">
+          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
           <folding>
-            <element signature="e#428#429#0" expanded="true" />
-            <element signature="e#457#458#0" expanded="true" />
-            <element signature="e#487#488#0" expanded="true" />
-            <element signature="e#516#517#0" expanded="true" />
-            <element signature="e#673#674#0" expanded="true" />
-            <element signature="e#705#706#0" expanded="true" />
-            <element signature="e#754#755#0" expanded="true" />
-            <element signature="e#796#797#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="697">
-          <caret line="46" column="21" lean-forward="false" selection-start-line="46" selection-start-column="21" selection-end-line="46" selection-end-column="21" />
-          <folding>
-            <element signature="e#1124#1125#0" expanded="true" />
-            <element signature="e#1156#1157#0" expanded="true" />
-            <element signature="e#1190#1191#0" expanded="true" />
-            <element signature="e#1222#1223#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;method#doesExplode#0;class#ChainReactionServer#0" expanded="false" />
+            <element signature="docComment;method#explode#0;class#ChainReactionServer#0" expanded="false" />
+            <element signature="method#explode#0;class#ChainReactionServer#0" expanded="false" />
+            <element signature="docComment;class#ExplodeEvent#0;class#ChainReactionServer#0" expanded="false" />
+            <element signature="class#ExplodeEvent#0;class#ChainReactionServer#0" expanded="false" />
+            <element signature="e#10169#10170#0" expanded="true" />
+            <element signature="e#10201#10202#0" expanded="true" />
+            <element signature="e#10223#10224#0" expanded="true" />
+            <element signature="e#10255#10256#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ChainReactionClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="477" column="102" lean-forward="false" selection-start-line="477" selection-start-column="102" selection-end-line="477" selection-end-column="102" />
+        <state relative-caret-position="425">
+          <caret line="339" column="21" lean-forward="false" selection-start-line="339" selection-start-column="21" selection-end-line="339" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#startUp#0;class#ChainReactionClient#0" expanded="false" />
             <element signature="method#selector#0;class#ChainReactionClient#0" expanded="false" />
             <element signature="method#setValues#0;class#ChainReactionClient#0" expanded="false" />
             <element signature="method#createWindow#0;class#ChainReactionClient#0" expanded="false" />
-            <element signature="e#22197#22198#0" expanded="true" />
-            <element signature="e#22230#22231#0" expanded="true" />
-            <element signature="e#22264#22265#0" expanded="true" />
-            <element signature="e#22303#22304#0" expanded="true" />
+            <element signature="e#14535#14536#0" expanded="true" />
+            <element signature="e#14568#14569#0" expanded="true" />
+            <element signature="e#14602#14603#0" expanded="true" />
+            <element signature="e#14641#14642#0" expanded="true" />
             <element signature="class#MouseLoop#0;class#ChainReactionClient#0" expanded="false" />
-            <element signature="e#23042#23043#0" expanded="true" />
-            <element signature="e#23080#23081#0" expanded="true" />
+            <element signature="e#15380#15381#0" expanded="true" />
+            <element signature="e#15418#15419#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="7" column="3" lean-forward="true" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
+          <folding>
+            <element signature="e#936#937#0" expanded="true" />
+            <element signature="e#967#968#0" expanded="true" />
+            <element signature="e#1010#1011#0" expanded="true" />
+            <element signature="e#1039#1040#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/BallEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="25" lean-forward="true" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
+          <folding>
+            <element signature="e#726#727#0" expanded="true" />
+            <element signature="e#755#756#0" expanded="true" />
+            <element signature="e#785#786#0" expanded="true" />
+            <element signature="e#814#815#0" expanded="true" />
+            <element signature="e#971#972#0" expanded="true" />
+            <element signature="e#1003#1004#0" expanded="true" />
+            <element signature="e#1052#1053#0" expanded="true" />
+            <element signature="e#1094#1095#0" expanded="true" />
+            <element signature="e#1127#1128#0" expanded="true" />
+            <element signature="e#1159#1160#0" expanded="true" />
+            <element signature="e#1206#1207#0" expanded="true" />
+            <element signature="e#1248#1249#0" expanded="true" />
+            <element signature="e#1277#1278#0" expanded="true" />
+            <element signature="e#1304#1305#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MovingBall.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="5" lean-forward="false" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
+        <state relative-caret-position="289">
+          <caret line="17" column="25" lean-forward="true" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
           <folding>
-            <element signature="e#127#128#0" expanded="true" />
-            <element signature="e#154#155#0" expanded="true" />
-            <element signature="e#187#188#0" expanded="true" />
-            <element signature="e#219#220#0" expanded="true" />
-            <element signature="e#265#266#0" expanded="true" />
-            <element signature="e#307#308#0" expanded="true" />
-            <element signature="e#339#340#0" expanded="true" />
-            <element signature="e#371#372#0" expanded="true" />
-            <element signature="e#417#418#0" expanded="true" />
-            <element signature="e#459#460#0" expanded="true" />
+            <element signature="e#176#177#0" expanded="true" />
+            <element signature="e#203#204#0" expanded="true" />
+            <element signature="e#236#237#0" expanded="true" />
+            <element signature="e#268#269#0" expanded="true" />
+            <element signature="e#314#315#0" expanded="true" />
+            <element signature="e#356#357#0" expanded="true" />
+            <element signature="e#388#389#0" expanded="true" />
+            <element signature="e#420#421#0" expanded="true" />
+            <element signature="e#466#467#0" expanded="true" />
+            <element signature="e#508#509#0" expanded="true" />
           </folding>
         </state>
       </provider>

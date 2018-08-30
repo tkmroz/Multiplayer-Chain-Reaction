@@ -9,7 +9,7 @@ import java.util.concurrent.LinkedBlockingQueue;
  */
 public class Ball implements Serializable{
     private Color ballColor;
-    private final int maxValue;
+    private int maxValue;
     private int value;
     private final static long serialVersionUID = 123456789;
     private Color boardColor;
@@ -29,6 +29,9 @@ public class Ball implements Serializable{
                 break;
         }
         ballQueue = new LinkedBlockingQueue<>();
+    }
+    Ball(int i){
+        value = i;
     }
 
     public int getValue() {

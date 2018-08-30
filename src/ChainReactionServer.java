@@ -1,31 +1,28 @@
 
 import netgame.common.*;
-
 import java.awt.*;
 import java.io.*;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.concurrent.LinkedBlockingQueue;
-
+import java.util.stream.Collector;
 
 public class ChainReactionServer extends Hub {
     private final static int PORT = 37829;
     private static ChainReactionServer server;
     private int playerCount = 0;
-    private HashMap<Integer, Integer> IDHashMap = new HashMap<>();
-    private HashMap<Integer, Player> playerHashMap = new HashMap<>();
+    private ArrayList <Player> playerList = new ArrayList<>();
     private Integer currentPlayer = 1;
     private Ball[][] board;
     private LinkedBlockingQueue<ExplodeEvent> explodeQueue;
     private static String handshake;
     private LinkedBlockingQueue<BallEvent> ballQueue  = new LinkedBlockingQueue<>();
+    private boolean everyoneGone = false;
 
     private ChainReactionServer() throws IOException {
         super(PORT);
         setAutoreset(true);
     }
-    private Color getPlayerColor(){
-        return playerHashMap.get(IDHashMap.get(currentPlayer)).getPlayerColor();
-    }
+
     public static void main(String[] args) {
         handshake = args[0];
         try {
@@ -40,14 +37,14 @@ public class ChainReactionServer extends Hub {
     protected void messageReceived(int playerID, Object message) {
         if (message instanceof Ball[][]) {
             board = (Ball[][]) message;
-            playerHashMap.get(IDHashMap.get(currentPlayer)).setHasPlayed(true);
             ballPlacer();
             if (currentPlayer == playerCount) {
                 currentPlayer = 1;
+                everyoneGone = true;
             } else {
                 currentPlayer++;
             }
-            board[0][0].setBoardColor(getPlayerColor());
+            board[0][0].setBoardColor(playerList.get(playerCount).getPlayerColor());
             gameLoop();
         }
     }
@@ -66,16 +63,15 @@ public class ChainReactionServer extends Hub {
             e.printStackTrace();
         }
 
-        Player player = new Player( playerCount);
-        IDHashMap.put(playerCount + 1, playerID);
-        playerHashMap.put(playerID, player);
+        Player player = new Player( playerCount, playerID);
+        playerList.add(player);
         playerCount++;
 
         if (getPlayerList().length == 2) {
             server.shutdownServerSocket();
             startNewGame();
             sendToAll(board);
-            sendToOne(IDHashMap.get(currentPlayer), currentPlayer.toString());
+            sendToOne(playerList.get(currentPlayer).getPlayerID(), currentPlayer.toString());
 
         }
     }
@@ -123,6 +119,7 @@ public class ChainReactionServer extends Hub {
         if (isGameOver()) {
 
         }
+        else gameLoop();
     }
 
     /**
@@ -145,7 +142,7 @@ public class ChainReactionServer extends Hub {
      * @param b b place in the array of the explosion
      */
     private void explode(int a, int b) {
-        ballQueue.add(new BallEvent(a, b, board[a][b].getMaxValue(),getPlayerColor()));
+        ballQueue.add(new BallEvent(a, b, board[a][b].getMaxValue(),playerList.get(playerCount).getPlayerColor()));
         board[a][b].setValue(0);
         if (board[a][b].getMaxValue() == 2) {
             if ((a == 0 && b == 0)) {
@@ -294,32 +291,34 @@ public class ChainReactionServer extends Hub {
     }
 
     private boolean isGameOver() {
-        /*HashMap<Player, Integer> playerEnd = new HashMap<>();
-        for(int a = 0; a < playerCount; a++){
-            playerEnd.put( playerHashMap.get(IDHashMap.get(a)), 0);
+        if(!everyoneGone){return false;}
+        //Go through the board and look for all instances of a players balls
+        //if 0 remove from playing
+        ArrayList<Integer> gameEnd = new ArrayList<>();
+        for(int x = 0;  x < playerCount; x++){
+            gameEnd.add(0);
         }
-        for (int x = 0; x < playerHashMap.get(0).getColors().size() - 1; x++) {
-            for (int a = 0; a < board.length; a++) {
-                for (int b = 0; b < board[0].length; b++) {
-                    if (board[a][b].getBallColor() != null) {
-                        if ((board[a][b].getBallColor().equals(new Player( -1).getColors().get(x)))) {
-                            int y = playerEnd.get(new Player(x));
-                            playerEnd.remove(new Player(x));
-                            playerEnd.put( playerHashMap.get(IDHashMap.get(a + 1)), y++);
+        ArrayList<Color> colors = playerList.get(0).getColors();
+        for (int a = 0; a < gameEnd.size(); a++){
+            for (int x = 0; x < board.length; x++){
+                for (int y = 0 ; y < board[0].length; y++){
+                    if(board[x][y].getBallColor() != null){
+                        if (board[x][y].getBallColor().equals(colors.get(x))){
+                            gameEnd.set(a, gameEnd.get(a) + 1);
                         }
                     }
                 }
             }
         }
-        for (int x = 0; x < playerCount; x++){
-            //Player player = playerEnd.get(playerHashMap.get(IDHashMap.get(x)));
-            //if(playerEnd)
+        for (int a  = 0; a < gameEnd.size(); a++){
+            if(gameEnd.get(a) == 0){
+                playerList.remove(a);
+                playerCount--;
+            }
         }
-        if () {
-        } else {
-            return false;
+        if(gameEnd.size() == 1){
+            return true;
         }
-    */
-        return true;
+        return false;
     }
 }

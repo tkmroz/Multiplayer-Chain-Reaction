@@ -9,12 +9,10 @@ import java.util.ArrayList;
 public class Player {
     //private final String playerName;
     private final Color playerColor;
-    private final Integer playerNumber;
-    private static ArrayList<Color> colors = new ArrayList<>(9);
-    private boolean hasPlayed;
+    private ArrayList<Color> colors = new ArrayList<>(9);
+    private int playerID;
 
-
-    Player(Integer number){
+    Player(Integer number, int id){
         colors.add(Color.RED);
         colors.add(new Color(0, 120, 0));
         colors.add(Color.BLUE);
@@ -26,8 +24,8 @@ public class Player {
         colors.add(Color.BLACK);
         //playerName = name;
         playerColor = colors.get(number);
-        playerNumber = number;
-        hasPlayed = false;
+        //hasPlayed = false;
+        playerID = id;
     }
     //public String getPlayerName(){
         //return playerName;
@@ -37,15 +35,11 @@ public class Player {
         return playerColor;
     }
 
-    public Integer getPlayerNumber(){ return  playerNumber;}
-    public ArrayList<Color> getColors(){
-        return colors;
-    }
-    public void setHasPlayed(boolean b){
-        hasPlayed = true;
-    }
-    public boolean isHasPlayed(){
-        return hasPlayed;
+    public Integer getPlayerID() {
+        return playerID;
     }
 
+    public ArrayList<Color> getColors() {
+        return colors;
+    }
 }
