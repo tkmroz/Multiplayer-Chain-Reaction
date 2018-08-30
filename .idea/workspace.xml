@@ -11,12 +11,10 @@
       <change beforePath="$PROJECT_DIR$/out/production/Multiplayer Chain Reaction/ChainReactionServer$ExplodeEvent.class" afterPath="$PROJECT_DIR$/out/production/Multiplayer Chain Reaction/ChainReactionServer$ExplodeEvent.class" />
       <change beforePath="$PROJECT_DIR$/out/production/Multiplayer Chain Reaction/ChainReactionServer.class" afterPath="$PROJECT_DIR$/out/production/Multiplayer Chain Reaction/ChainReactionServer.class" />
       <change beforePath="$PROJECT_DIR$/out/production/Multiplayer Chain Reaction/Player.class" afterPath="$PROJECT_DIR$/out/production/Multiplayer Chain Reaction/Player.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/Multiplayer Chain Reaction/idk.class" afterPath="" />
       <change beforePath="$PROJECT_DIR$/src/Ball.java" afterPath="$PROJECT_DIR$/src/Ball.java" />
       <change beforePath="$PROJECT_DIR$/src/ChainReactionClient.java" afterPath="$PROJECT_DIR$/src/ChainReactionClient.java" />
       <change beforePath="$PROJECT_DIR$/src/ChainReactionServer.java" afterPath="$PROJECT_DIR$/src/ChainReactionServer.java" />
       <change beforePath="$PROJECT_DIR$/src/Player.java" afterPath="$PROJECT_DIR$/src/Player.java" />
-      <change beforePath="$PROJECT_DIR$/src/idk.java" afterPath="" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="../../../User1/" />
@@ -76,36 +74,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BallEvent.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/BallEvent.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="25" lean-forward="true" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
-              <folding>
-                <element signature="e#726#727#0" expanded="true" />
-                <element signature="e#755#756#0" expanded="true" />
-                <element signature="e#785#786#0" expanded="true" />
-                <element signature="e#814#815#0" expanded="true" />
-                <element signature="e#971#972#0" expanded="true" />
-                <element signature="e#1003#1004#0" expanded="true" />
-                <element signature="e#1052#1053#0" expanded="true" />
-                <element signature="e#1094#1095#0" expanded="true" />
-                <element signature="e#1127#1128#0" expanded="true" />
-                <element signature="e#1159#1160#0" expanded="true" />
-                <element signature="e#1206#1207#0" expanded="true" />
-                <element signature="e#1248#1249#0" expanded="true" />
-                <element signature="e#1277#1278#0" expanded="true" />
-                <element signature="e#1304#1305#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ChainReactionClient.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ChainReactionClient.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ChainReactionClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="339" column="21" lean-forward="false" selection-start-line="339" selection-start-column="21" selection-end-line="339" selection-end-column="21" />
+            <state relative-caret-position="102">
+              <caret line="320" column="21" lean-forward="false" selection-start-line="311" selection-start-column="58" selection-end-line="320" selection-end-column="21" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#startUp#0;class#ChainReactionClient#0" expanded="false" />
@@ -124,23 +97,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MovingBall.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MovingBall.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/MovingBall.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="17" column="25" lean-forward="true" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
+            <state relative-caret-position="0">
+              <caret line="0" column="27" lean-forward="true" selection-start-line="0" selection-start-column="27" selection-end-line="0" selection-end-column="27" />
               <folding>
-                <element signature="e#176#177#0" expanded="true" />
-                <element signature="e#203#204#0" expanded="true" />
-                <element signature="e#236#237#0" expanded="true" />
-                <element signature="e#268#269#0" expanded="true" />
-                <element signature="e#314#315#0" expanded="true" />
-                <element signature="e#356#357#0" expanded="true" />
                 <element signature="e#388#389#0" expanded="true" />
                 <element signature="e#420#421#0" expanded="true" />
-                <element signature="e#466#467#0" expanded="true" />
-                <element signature="e#508#509#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BallEvent.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/BallEvent.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="5" column="25" lean-forward="false" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -149,7 +124,7 @@
         <entry file="file://$PROJECT_DIR$/src/Player.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="85">
-              <caret line="7" column="3" lean-forward="true" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
+              <caret line="7" column="3" lean-forward="false" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
               <folding>
                 <element signature="e#936#937#0" expanded="true" />
                 <element signature="e#967#968#0" expanded="true" />
@@ -241,12 +216,12 @@
         <option value="$PROJECT_DIR$/src/netgame/common/Client.java" />
         <option value="$PROJECT_DIR$/../ChainReaction/ChainReaction.java" />
         <option value="$PROJECT_DIR$/../Chain Reaction/src/ChainReaction.java" />
-        <option value="$PROJECT_DIR$/src/MovingBall.java" />
-        <option value="$PROJECT_DIR$/src/BallEvent.java" />
         <option value="$PROJECT_DIR$/src/Ball.java" />
         <option value="$PROJECT_DIR$/src/Player.java" />
         <option value="$PROJECT_DIR$/src/ChainReactionServer.java" />
         <option value="$PROJECT_DIR$/src/ChainReactionClient.java" />
+        <option value="$PROJECT_DIR$/src/BallEvent.java" />
+        <option value="$PROJECT_DIR$/src/MovingBall.java" />
       </list>
     </option>
   </component>
@@ -525,7 +500,14 @@
       <option name="project" value="LOCAL" />
       <updated>1533667037259</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Removed timer&#10;Changed ball printing&#10;Added new class">
+      <created>1535593227213</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1535593227213</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <option name="createBranch" value="false" />
     <option name="useBranch" value="true" />
     <option name="commitChanges" value="false" />
@@ -561,7 +543,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32843137" sideWeight="0.50292826" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29248366" sideWeight="0.49121523" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32843137" sideWeight="0.49707174" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293718" sideWeight="0.4969743" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -971,10 +953,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="7" column="3" lean-forward="false" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
+          <folding>
+            <element signature="e#936#937#0" expanded="true" />
+            <element signature="e#967#968#0" expanded="true" />
+            <element signature="e#1010#1011#0" expanded="true" />
+            <element signature="e#1039#1040#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/BallEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="25" lean-forward="false" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MovingBall.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="27" lean-forward="true" selection-start-line="0" selection-start-column="27" selection-end-line="0" selection-end-column="27" />
+          <folding>
+            <element signature="e#388#389#0" expanded="true" />
+            <element signature="e#420#421#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/ChainReactionClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="339" column="21" lean-forward="false" selection-start-line="339" selection-start-column="21" selection-end-line="339" selection-end-column="21" />
+        <state relative-caret-position="102">
+          <caret line="320" column="21" lean-forward="false" selection-start-line="311" selection-start-column="58" selection-end-line="320" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#startUp#0;class#ChainReactionClient#0" expanded="false" />
@@ -988,61 +1002,6 @@
             <element signature="class#MouseLoop#0;class#ChainReactionClient#0" expanded="false" />
             <element signature="e#15380#15381#0" expanded="true" />
             <element signature="e#15418#15419#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="7" column="3" lean-forward="true" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
-          <folding>
-            <element signature="e#936#937#0" expanded="true" />
-            <element signature="e#967#968#0" expanded="true" />
-            <element signature="e#1010#1011#0" expanded="true" />
-            <element signature="e#1039#1040#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/BallEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="25" lean-forward="true" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
-          <folding>
-            <element signature="e#726#727#0" expanded="true" />
-            <element signature="e#755#756#0" expanded="true" />
-            <element signature="e#785#786#0" expanded="true" />
-            <element signature="e#814#815#0" expanded="true" />
-            <element signature="e#971#972#0" expanded="true" />
-            <element signature="e#1003#1004#0" expanded="true" />
-            <element signature="e#1052#1053#0" expanded="true" />
-            <element signature="e#1094#1095#0" expanded="true" />
-            <element signature="e#1127#1128#0" expanded="true" />
-            <element signature="e#1159#1160#0" expanded="true" />
-            <element signature="e#1206#1207#0" expanded="true" />
-            <element signature="e#1248#1249#0" expanded="true" />
-            <element signature="e#1277#1278#0" expanded="true" />
-            <element signature="e#1304#1305#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MovingBall.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="25" lean-forward="true" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
-          <folding>
-            <element signature="e#176#177#0" expanded="true" />
-            <element signature="e#203#204#0" expanded="true" />
-            <element signature="e#236#237#0" expanded="true" />
-            <element signature="e#268#269#0" expanded="true" />
-            <element signature="e#314#315#0" expanded="true" />
-            <element signature="e#356#357#0" expanded="true" />
-            <element signature="e#388#389#0" expanded="true" />
-            <element signature="e#420#421#0" expanded="true" />
-            <element signature="e#466#467#0" expanded="true" />
-            <element signature="e#508#509#0" expanded="true" />
           </folding>
         </state>
       </provider>
