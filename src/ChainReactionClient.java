@@ -25,16 +25,13 @@ import java.util.concurrent.LinkedBlockingQueue;
  */
 public class ChainReactionClient extends Client {
     private final static int PORT = 37829;
-    private static final Object monitor = new Object();
+    static final Object monitor = new Object();
     private static int width = 625;
     private static int height = 700;
-    private static int down;
-    private static int length = (int) (width * .06);
     private static Frame frame;
     private volatile static DrawingLoop loop;
     private static ArrayList<Integer> horizontalLines = new ArrayList<>();
     private static ArrayList<Integer> verticalLines = new ArrayList<>();
-    private static JRadioButton classicRadio, normalRadio, HDRadio;
     private static int rowNumber;
     private static int columnNumber;
     private static String handshake;
@@ -42,10 +39,12 @@ public class ChainReactionClient extends Client {
     private static LinkedBlockingQueue<BallEvent> ballQueue = new LinkedBlockingQueue<>();
     private MovingBall[][] board;
     private Ball[][] newBoard;
-    private int i;
+    static StartupScreen startupScreen;
 
     private ChainReactionClient(String hubHostName) throws IOException, ButtonError {
         super(hubHostName, PORT);
+        horizontalLines = startupScreen.getHorizontalLines();
+        verticalLines = startupScreen.getVerticalLines();
         if (isBroken) {
             disconnect();
             throw new ButtonError("No Size Selected");
@@ -54,7 +53,7 @@ public class ChainReactionClient extends Client {
     }
 
     public static void main(String[] args) {
-        selector();
+        startupScreen = new StartupScreen();
         try {
             synchronized (monitor) {
                 monitor.wait();
@@ -65,68 +64,6 @@ public class ChainReactionClient extends Client {
         }
 
     }
-
-    private static void startUp(double rowSpacing, double columnSpacing) {
-        for (int x = 0; x < rowNumber; x++) {
-            verticalLines.add(length);
-            length = length + (int) (width * rowSpacing);
-        }
-        for (int x = 0; x < columnNumber; x++) {
-            horizontalLines.add(down);
-            down = down + (int) (width * columnSpacing);
-        }
-        verticalLines.add(length);
-    }
-
-    private static void selector() {
-        Frame frame = new Frame();
-        JPanel content = new JPanel();
-        frame.setContentPane(content);
-        content.setLayout(null);
-        ButtonGroup selectorGroup = new ButtonGroup();
-        classicRadio = new JRadioButton("Classic(5x8)");
-        normalRadio = new JRadioButton("Normal(11x11)");
-        HDRadio = new JRadioButton("HD Grid(15x10)");
-        selectorGroup.add(classicRadio);
-        selectorGroup.add(normalRadio);
-        selectorGroup.add(HDRadio);
-        content.add(classicRadio);
-        content.add(normalRadio);
-        content.add(HDRadio);
-        classicRadio.setBounds(0, 0, 100, 25);
-        normalRadio.setBounds(100, 0, 100, 25);
-        HDRadio.setBounds(200, 0, 100, 25);
-        content.setPreferredSize(new Dimension(300, 50));
-        content.setBackground(Color.BLACK);
-        JButton button = new JButton("OK");
-        content.add(button);
-        ButtonHandler b = new ButtonHandler();
-        button.addActionListener(b);
-        button.setBounds(100, 25, 100, 25);
-        frame.pack();
-    }
-
-    private static void setValues() {
-        if (classicRadio.isSelected()) {
-            handshake = "classic";
-        } else if (normalRadio.isSelected()) {
-            handshake = "normal";
-            rowNumber = 11;
-            columnNumber = 11;
-            down = 65;
-            startUp(.08, .08);
-        } else if (HDRadio.isSelected()) {
-            handshake = "HD";
-            rowNumber = 10;
-            columnNumber = 15;
-            down = 35;
-            startUp(.09, .07);
-        } else {
-            isBroken = true;
-        }
-    }
-
-
     @Override
     protected void messageReceived(Object message) {
         ArrayList<Ball[][]> list = new ArrayList<>();
@@ -224,34 +161,6 @@ public class ChainReactionClient extends Client {
         out.writeObject(handshake);
         out.flush();
     }
-
-    private static class Frame extends JFrame {
-        Frame(String name) {
-            this.setName(name);
-            this.setLocation(150, 0);
-            this.setVisible(true);
-            this.setResizable(false);
-            this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        }
-
-        Frame() {
-            this.setLocation(150, 0);
-            this.setVisible(true);
-            this.setResizable(false);
-            this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        }
-
-    }
-
-    private static class ButtonHandler implements ActionListener {
-        public void actionPerformed(ActionEvent evt) {
-            synchronized (monitor) {
-                monitor.notify();
-            }
-            setValues();
-        }
-    }
-
     private class DrawingLoop extends JPanel {
         int[] xblock = new int[25];
         int[] yblock = new int[25];
@@ -409,5 +318,23 @@ public class ChainReactionClient extends Client {
         ButtonError(String message) {
             super(message);
         }
+    }
+
+    public static void setHandshake(String handshake) {
+        ChainReactionClient.handshake = handshake;
+    }
+
+    public static void setColumnNumber(int columnNumber) {
+        ChainReactionClient.columnNumber = columnNumber;
+    }
+
+    public static void setIsBroken(boolean isBroken) {
+
+        ChainReactionClient.isBroken = isBroken;
+    }
+
+    public static void setRowNumber(int rowNumber) {
+
+        ChainReactionClient.rowNumber = rowNumber;
     }
 }
