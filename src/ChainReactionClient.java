@@ -41,13 +41,13 @@ public class ChainReactionClient extends Client {
     private Ball[][] newBoard;
     static StartupScreen startupScreen;
 
-    private ChainReactionClient(String hubHostName) throws IOException, ButtonError {
+    private ChainReactionClient(String hubHostName) throws Exception {
         super(hubHostName, PORT);
         horizontalLines = startupScreen.getHorizontalLines();
         verticalLines = startupScreen.getVerticalLines();
         if (isBroken) {
             disconnect();
-            throw new ButtonError("No Size Selected");
+            throw new Exception("No Size Selected");
         }
         loop = new DrawingLoop();
     }
@@ -295,10 +295,8 @@ public class ChainReactionClient extends Client {
     private class MouseLoop implements MouseListener {
         MouseLoop() {
         }
-
         public void mousePressed(MouseEvent e) {
             ballPlacer(e.getX(), e.getY(), board[0][0].getBoardColor());
-
         }
 
         public void mouseReleased(MouseEvent e) {
@@ -311,12 +309,6 @@ public class ChainReactionClient extends Client {
         }
 
         public void mouseClicked(MouseEvent e) {
-        }
-    }
-
-    private class ButtonError extends Exception {
-        ButtonError(String message) {
-            super(message);
         }
     }
 
