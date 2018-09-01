@@ -66,7 +66,6 @@ public class Hub {
      *  A map that associates player names with the connections to each player.
      */
     private TreeMap<Integer, ConnectionToClient> playerConnections;
-    private int i;
 
     /**
      * A queue of messages received from clients.  When a method is received,

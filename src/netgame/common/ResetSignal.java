@@ -6,6 +6,4 @@ package netgame.common;
  * stream should be reset.  A ResetSignal has no data.
  */
 class ResetSignal {
-
-    private int i;
 }

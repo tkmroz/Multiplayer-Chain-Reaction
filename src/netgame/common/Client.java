@@ -42,8 +42,6 @@ abstract public class Client {
      */
     protected int[] connectedPlayerIDs = new int[0];
 
-    private int i;
-
     /**
      * If the autoreset property is set to true, then the ObjectOutputStream
      * that is used for transmitting messages is reset before each object is

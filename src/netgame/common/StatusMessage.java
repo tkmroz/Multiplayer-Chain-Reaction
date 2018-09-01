@@ -22,7 +22,6 @@ final class StatusMessage implements Serializable {
      */
     public final int playerID;
 
-    private int i;
 
     /**
      * True if the player has just connected; false if the player

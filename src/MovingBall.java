@@ -4,7 +4,6 @@ public class MovingBall extends Ball {
     private int xLocation;
     private int yLocation;
     int ballAmount;
-    private int i;
     public MovingBall(String type){
         super(type);
     }

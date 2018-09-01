@@ -17,7 +17,6 @@ public class ChainReactionServer extends Hub {
     private static String handshake;
     private LinkedBlockingQueue<BallEvent> ballQueue  = new LinkedBlockingQueue<>();
     private boolean everyoneGone = false;
-    private int i;
 
     private ChainReactionServer() throws IOException {
         super(PORT);
