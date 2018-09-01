@@ -42,6 +42,7 @@ public class ChainReactionClient extends Client {
     private static LinkedBlockingQueue<BallEvent> ballQueue = new LinkedBlockingQueue<>();
     private MovingBall[][] board;
     private Ball[][] newBoard;
+    private int i;
 
     private ChainReactionClient(String hubHostName) throws IOException, ButtonError {
         super(hubHostName, PORT);

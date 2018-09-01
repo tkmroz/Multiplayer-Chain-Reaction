@@ -11,6 +11,7 @@ public class Player {
     private final Color playerColor;
     private ArrayList<Color> colors = new ArrayList<>(9);
     private int playerID;
+    private int i;
 
     Player(Integer number, int id){
         colors.add(Color.RED);

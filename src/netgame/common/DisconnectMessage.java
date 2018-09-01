@@ -26,4 +26,6 @@ final class DisconnectMessage implements Serializable {
         this.message = message;
     }
 
+    private int i;
+
 }

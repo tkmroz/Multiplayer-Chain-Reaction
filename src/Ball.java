@@ -15,6 +15,8 @@ public class Ball implements Serializable{
     private Color boardColor;
     private LinkedBlockingQueue<BallEvent> ballQueue;
 
+    private int i;
+
     Ball(String type) {
         value = 0;
         switch (type) {

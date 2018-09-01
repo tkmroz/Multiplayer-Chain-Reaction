@@ -6,6 +6,8 @@ public class BallEvent {
     private int ballValue;
     private Color ballColor;
     private final String type;
+
+    private int i;
     /*
     private int mouseX;
     private int mouseY;*/
