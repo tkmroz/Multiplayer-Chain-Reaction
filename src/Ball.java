@@ -73,5 +73,16 @@ public class Ball implements Serializable{
         }
         return false;
     }
+    public static String returnType(Ball b){
+        switch (b.maxValue) {
+            case 2:
+                return "Corner";
+            case 3:
+                return "Edge";
+            default:
+                return "Middle";
+        }
+    }
 }
+
 

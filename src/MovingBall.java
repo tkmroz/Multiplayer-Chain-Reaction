@@ -1,11 +1,16 @@
-import java.util.ArrayList;
 
 public class MovingBall extends Ball {
     private int xLocation;
     private int yLocation;
+    private int row;
+    private int column;
     int ballAmount;
-    public MovingBall(String type){
+    MovingBall(String type, int x, int y, int r, int c){
         super(type);
+        xLocation = x;
+        yLocation = y;
+        row = r;
+        column = c;
     }
 
     public int getyLocation() {
@@ -19,5 +24,13 @@ public class MovingBall extends Ball {
     }
     public void setxLocation(int xLocation) {
         this.xLocation = xLocation;
+    }
+
+    public int getColumn() {
+        return column;
+    }
+
+    public int getRow() {
+        return row;
     }
 }

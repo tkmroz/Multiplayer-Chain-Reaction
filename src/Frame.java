@@ -9,7 +9,8 @@ class Frame extends JFrame {
             this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         }
 
-        Frame() {
+        Frame(String name, int a) {
+            this.setName(name);
             this.setLocation(150, 0);
             this.setVisible(true);
             this.setResizable(false);

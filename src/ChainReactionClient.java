@@ -2,8 +2,6 @@ import netgame.common.Client;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.geom.Ellipse2D;
@@ -11,7 +9,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.concurrent.LinkedBlockingQueue;
 
 //End goal is to have 5x8, 10x11 and HD all in one game, which only depends on which prefs are selected
@@ -26,8 +23,6 @@ import java.util.concurrent.LinkedBlockingQueue;
 public class ChainReactionClient extends Client {
     private final static int PORT = 37829;
     static final Object monitor = new Object();
-    private static int width = 625;
-    private static int height = 700;
     private static Frame frame;
     private volatile static DrawingLoop loop;
     private static ArrayList<Integer> horizontalLines = new ArrayList<>();
@@ -37,20 +32,9 @@ public class ChainReactionClient extends Client {
     private static String handshake;
     private static boolean isBroken = false;
     private static LinkedBlockingQueue<BallEvent> ballQueue = new LinkedBlockingQueue<>();
-    private MovingBall[][] board;
-    private Ball[][] newBoard;
-    static StartupScreen startupScreen;
-
-    private ChainReactionClient(String hubHostName) throws Exception {
-        super(hubHostName, PORT);
-        horizontalLines = startupScreen.getHorizontalLines();
-        verticalLines = startupScreen.getVerticalLines();
-        if (isBroken) {
-            disconnect();
-            throw new Exception("No Size Selected");
-        }
-        loop = new DrawingLoop();
-    }
+    private static StartupScreen startupScreen;
+    private Ball[][] board;
+    private ArrayList<MovingBall> balls;
 
     public static void main(String[] args) {
         startupScreen = new StartupScreen();
@@ -64,29 +48,38 @@ public class ChainReactionClient extends Client {
         }
 
     }
+
+    private ChainReactionClient(String hubHostName) throws Exception {
+        super(hubHostName, PORT);
+        horizontalLines = startupScreen.getHorizontalLines();
+        verticalLines = startupScreen.getVerticalLines();
+        if (isBroken) {
+            disconnect();
+            throw new Exception("No Size Selected");
+        }
+        loop = new DrawingLoop();
+    }
+
     @Override
     protected void messageReceived(Object message) {
-        ArrayList<Ball[][]> list = new ArrayList<>();
-        if(message.getClass() == list.getClass()) {
+
+        if(message instanceof Ball[][]) {
+            balls = new ArrayList<>();
+            board = (Ball[][]) message;
+
             if (frame != null) {
                 frame.dispose();
             }
-            list = (ArrayList<Ball[][]>) message;
-            board = (MovingBall[][]) list.get(0);
-            for (int a = 0; a < board.length; a++){
-                for (int b = 0; b < board[0].length; b++){
-                    board[a][b].setxLocation(horizontalLines.get(a));
-                    board[a][b].setyLocation(verticalLines.get(b));
+            ballQueue = board[0][0].getBallQueue();
+            for (int a = 0; a < board.length; a++) {
+                for (int b = 0; b < board[0].length; b++) {
+                    balls.add(new MovingBall(Ball.returnType(board[a][b]),verticalLines.get(a), horizontalLines.get(b), a, b));
                 }
             }
-        }
-            newBoard = list.get(1);
-            ballQueue = newBoard[0][0].getBallQueue();
             createWindow();
-            loop.redraw();
-
-
-        if (message instanceof String) {
+            loop.repaint();
+        }
+        else if (message instanceof String) {
             loop.mousing();
         }
 
@@ -107,7 +100,7 @@ public class ChainReactionClient extends Client {
         content.add(message, BorderLayout.NORTH);
         displayPanel.setBackground(Color.BLACK);
         displayPanel.setForeground(Color.WHITE);
-        content.setPreferredSize(new Dimension(width, height));
+        content.setPreferredSize(new Dimension(625, 700));
         displayPanel.setPreferredSize(new Dimension(625, 700));
         frame.pack();
         MouseLoop mouseLoop = new MouseLoop();
@@ -115,7 +108,6 @@ public class ChainReactionClient extends Client {
     }
 
     private boolean isMoveLegal(int x, int y, Color color) {
-        //use less specific values
         if ((x <= verticalLines.get(0)) || (x >= verticalLines.get(verticalLines.size() - 1)) || (y <= horizontalLines.get(0)) || (y >= horizontalLines.get(horizontalLines.size() - 1))) {
             return false;
         } else if ((color == null)) {
@@ -162,21 +154,17 @@ public class ChainReactionClient extends Client {
         out.flush();
     }
     private class DrawingLoop extends JPanel {
-        int[] xblock = new int[25];
-        int[] yblock = new int[25];
-        int temp = 2;
-        GradientPaint gradientPaint;
-
         private DrawingLoop() {
             setLayout(new BorderLayout(3, 3));
             setPreferredSize(new Dimension(625, 700));
         }
-
         public void paintComponent(Graphics g) {
+            //1.Install
             super.paintComponent(g);
             g.setColor(board[0][0].getBoardColor());
             Graphics2D g2 = (Graphics2D) g;
             g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            //2.Draw Lines
             //vertical lines
             for (int x = 0; x < rowNumber; x++) {
                 g.drawLine(verticalLines.get(x), horizontalLines.get(0), verticalLines.get(x), horizontalLines.get(horizontalLines.size() - 1));
@@ -186,103 +174,75 @@ public class ChainReactionClient extends Client {
                 g.drawLine(verticalLines.get(0), horizontalLines.get(x), verticalLines.get(verticalLines.size() - 1), horizontalLines.get(x));
             }
             g.drawLine(verticalLines.get(verticalLines.size() - 1), horizontalLines.get(0), verticalLines.get(verticalLines.size() - 1), horizontalLines.get(horizontalLines.size() - 1));
-            for (int foo = 0; foo < 25; foo++) {
-                xblock[foo] = verticalLines.get(ballQueue.peek().getStartX());
-                yblock[foo] = horizontalLines.get(ballQueue.peek().getStartY());
-            }
-            int x = ballQueue.peek().getStartX();
-            int y = ballQueue.peek().getStartY();
-            if (ballQueue.peek() != null && ballQueue.size() != 0) {
-                ArrayList<Ball> ballList = new ArrayList<>(ballQueue.peek().getBallValue());
-                for(int a = 0; a < ballList.size(); a++) {
-                    ballList.set(a,new Ball(ballQueue.peek().getType()));
-                }
-                while (ballQueue.size() !=0 ){
-                    animateLoop(x, y, g2, ballList);
-                }
-                try{
-                    if(!(Arrays.deepEquals(board, newBoard))){
-                        throw new Exception("Something went wrong with the animations");
-                    }
-                }
-                catch (Exception e){
-                    e.printStackTrace();
-                }
-                finally {
-                    for (int a = 0; a < board.length; a++){
-                        for (int b = 0; b < board[0].length; b++){
-                            board[a][b].setxLocation(horizontalLines.get(a));
-                            board[a][b].setyLocation(verticalLines.get(b));
-                        }
-                    }
+            //3.Draw Balls
+            for(MovingBall m: balls){
+                if (m.getValue() != 0){
+                    g2.setPaint(gradientPaint(m.getxLocation() + 5, m.getyLocation() + 5, m.getBallColor(), m.getxLocation() + 40, m.getyLocation() + 45));
+                    g2.fill(new Ellipse2D.Double(m.getxLocation() + 5, m.getyLocation() + 5, 40, 40));
+                    g2.drawString(String.valueOf(m.getValue()),m.getxLocation()+ 5,m.getyLocation() + 5);
                 }
             }
-            else {
-                for (x = 0; x < board.length; x++) {
-                    for (y = 0; y < board[0].length; y++) {
-                        if (board[x][y].getValue() != 0) {
-                            gradientPaint = gradientPaint(verticalLines.get(x) + 5, (horizontalLines.get(y)) + 5, board[x][y].getBallColor(), (float) (verticalLines.get(x)) + 45, (float) horizontalLines.get(y) + 45);
-                            g2.setPaint(gradientPaint);
-                            g2.fill(new Ellipse2D.Double(verticalLines.get(x) + 5, (horizontalLines.get(y)) + 5, 40, 40));
-                            g2.drawString(String.valueOf(board[x][y].getValue()), ((verticalLines.get(x)) + 5), (horizontalLines.get(y)) + 5);
-
-                        }
-
-                    }
+            //4.Test for changes
+            /*if (ballQueue.peek() != null && ballQueue.size() != 0){
+                int i = balls.indexOf();
+                animateLoop(balls.get(i));
+                //Test if ball is on mark
+                if(){
+                    ballQueue.poll();
                 }
+                repaint();
+            }*/
+            //5.Modify and call again
+        }
+
+        private void animateLoop(MovingBall m){
+            int x = m.getxLocation();
+            int y = m.getyLocation();
+            if (m.getMaxValue() == 2) {
+                if ((x == 0 && y == 0)) {
+                    m.setxLocation(m.getxLocation() + 1);
+                    m.setyLocation(m.getyLocation() + 1);
+                }
+                else if (x == 0 && y == (board[0].length - 1)) {
+                    m.setxLocation(m.getxLocation() + 1);
+                    m.setyLocation(m.getyLocation() - 1);
+                }
+                else if (x == (board.length - 1) && y == 0) {
+                    m.setxLocation(m.getxLocation() - 1);
+                    m.setyLocation(m.getyLocation() + 1);
+                }
+                else {
+                    m.setxLocation(m.getxLocation() - 1);
+                    m.setyLocation(m.getyLocation() - 1);
+                }
+            } else if (m.getMaxValue() == 3) {
+                if (x > 0 && y == 0) {
+                    m.setxLocation(m.getxLocation() + 1);
+                    m.setyLocation(m.getyLocation() + 1);
+                    m.setxLocation(m.getxLocation() - 1);
+                }
+                else if (x > 0 && y == board[0].length - 1) {
+                    m.setxLocation(m.getxLocation() + 1);
+                    m.setxLocation(m.getxLocation() - 1);
+                    m.setyLocation(m.getyLocation() - 1);
+                }
+                else if (x == 0 && y > 0) {
+                    m.setxLocation(m.getxLocation() + 1);
+                    m.setyLocation(m.getyLocation() + 1);
+                    m.setyLocation(m.getyLocation() - 1);
+                }
+                else if (x == board.length - 1 && y > 0) {
+                    m.setxLocation(m.getxLocation() - 1);
+                    m.setyLocation(m.getyLocation() + 1);
+                    m.setyLocation(m.getyLocation() - 1);
+                }
+            } else if (m.getMaxValue() == 4) {
+                m.setxLocation(m.getxLocation() + 1);
+                m.setxLocation(m.getxLocation() - 1);
+                m.setyLocation(m.getyLocation() + 1);
+                m.setyLocation(m.getyLocation() - 1);
             }
         }
-
-        private void animateLoop(int x, int y, Graphics2D g2, ArrayList<Ball> ballList){
-                if (board[x][y].getMaxValue() == 2) {
-                    if ((x == 0 && y == 0)) {
-                        ballList.set(0, new Ball(ballList.get(0).getValue() + 1));
-                        ballList.set(1, new Ball(ballList.get(1).getValue() + 1));
-                    }
-                    else if (x == 0 && y == (board[0].length - 1)) {
-                    }
-                    else if (x == (board.length - 1) && y == 0) {
-                    }
-                    else {
-                    }
-                } else if (board[x][y].getMaxValue() == 3) {
-                    if (x > 0 && y == 0) {
-                    }
-                    else if (x > 0 && y == board[0].length - 1) {
-                    }
-                    else if (x == 0 && y > 0) {
-                    }
-                    else if (x == board.length - 1 && y > 0) {
-                    }
-                } else if (board[x][y].getMaxValue() == 4) {
-                }
-                temp++;
-                /*for (int a = 0; a < 24; a++) {
-                    if () {
-                        ballQueue.poll();
-                        temp = 0;
-                        break;
-                    }
-                }*/
-                for (x = 0; x < board.length; x++) {
-                    for (y = 0; y < board[0].length; y++) {
-                        if (board[x][y].getValue() != 0) {
-                            int xLoc = board[x][y].getxLocation();
-                            int yLoc = board[x][y].getyLocation();
-                            gradientPaint = gradientPaint(xLoc + 5, yLoc + 5, board[x][y].getBallColor(), xLoc + 45, yLoc + 45);
-                            g2.setPaint(gradientPaint);
-                            g2.fill(new Ellipse2D.Double(xLoc + 5, yLoc + 5, 40, 40));
-                            g2.drawString(String.valueOf(board[x][y].getValue()), xLoc + 5, yLoc + 5);
-                        }
-
-                    }
-                }
-
-        }
-        private void redraw() {
-            repaint();
-        }
-
         private void mousing() {
             new MouseLoop();
         }

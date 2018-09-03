@@ -13,7 +13,7 @@ public class StartupScreen extends JPanel{
         selector();
     }
     private void selector() {
-        Frame frame = new Frame();
+        Frame frame = new Frame("Chain Reaction", 0);
         JPanel content = new JPanel();
         frame.setContentPane(content);
         content.setLayout(null);

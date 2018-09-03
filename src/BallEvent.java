@@ -6,8 +6,7 @@ public class BallEvent {
     private int ballValue;
     private Color ballColor;
     private final String type;
-    /*
-    private int mouseX;
+    /*private int mouseX;
     private int mouseY;*/
     BallEvent(int x, int y, int value, Color color){
         startX = x;
@@ -63,5 +62,4 @@ public class BallEvent {
     public String getType(){
         return type;
     }
-    private void bs(){}
 }
