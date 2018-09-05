@@ -183,15 +183,18 @@ public class ChainReactionClient extends Client {
                 }
             }
             //4.Test for changes
-            /*if (ballQueue.peek() != null && ballQueue.size() != 0){
-                int i = balls.indexOf();
-                animateLoop(balls.get(i));
+            if (ballQueue.peek() != null && ballQueue.size() != 0){
+                for (MovingBall m: balls){
+                    if(m.getBallID() == ballQueue.peek().getBallID()){
+                        animateLoop(m);
+                    }
+                }
                 //Test if ball is on mark
-                if(){
+                /*if(){
                     ballQueue.poll();
                 }
-                repaint();
-            }*/
+                repaint();*/
+            }
             //5.Modify and call again
         }
 

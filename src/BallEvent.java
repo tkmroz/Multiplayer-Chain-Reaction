@@ -6,6 +6,7 @@ public class BallEvent {
     private int ballValue;
     private Color ballColor;
     private final String type;
+    private final int ballID;
     /*private int mouseX;
     private int mouseY;*/
     BallEvent(int x, int y, int value, Color color){
@@ -24,6 +25,7 @@ public class BallEvent {
                 type = "Middle";
                 break;
         }
+        ballID = (87 * startX) + (423 * startY);
         //mouseX = x2;
        // mouseY = y2;
     }
@@ -61,5 +63,9 @@ public class BallEvent {
     }
     public String getType(){
         return type;
+    }
+
+    public int getBallID() {
+        return ballID;
     }
 }
