@@ -1,17 +1,21 @@
 
+import java.awt.*;
+
 public class MovingBall extends Ball {
     private int xLocation;
     private int yLocation;
     private int row;
     private int column;
     private final int ballID;
-    MovingBall(String type, int x, int y, int r, int c){
-        super(type);
+    private int value;
+    MovingBall(String type, int x, int y, int r, int c, int v, Color color){
+        super(type, v, color);
         xLocation = x;
         yLocation = y;
         row = r;
         column = c;
         ballID = (87 * row) + (423 * column);
+        value = v;
     }
 
     public int getyLocation() {

@@ -30,8 +30,21 @@ public class Ball implements Serializable{
         }
         ballQueue = new LinkedBlockingQueue<>();
     }
-    Ball(int i){
-        value = i;
+    Ball(String type, int v, Color c) {
+        value = v;
+        switch (type) {
+            case "Corner":
+                maxValue = 2;
+                break;
+            case "Edge":
+                maxValue = 3;
+                break;
+            default:
+                maxValue = 4;
+                break;
+        }
+        ballQueue = new LinkedBlockingQueue<>();
+        ballColor = c;
     }
 
     public int getValue() {

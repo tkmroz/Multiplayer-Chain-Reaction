@@ -8,12 +8,13 @@ public class StartupScreen extends JPanel{
     private static ArrayList<Integer> horizontalLines = new ArrayList<>();
     private static ArrayList<Integer> verticalLines = new ArrayList<>();
     private JRadioButton classicRadio, normalRadio, HDRadio;
+    private Frame frame;
 
     public StartupScreen(){
         selector();
     }
     private void selector() {
-        Frame frame = new Frame("Chain Reaction", 0);
+        frame = new Frame("Chain Reaction", 0);
         JPanel content = new JPanel();
         frame.setContentPane(content);
         content.setLayout(null);
@@ -82,6 +83,8 @@ public class StartupScreen extends JPanel{
     private class ButtonHandler implements ActionListener {
         public void actionPerformed(ActionEvent evt) {
             setValues();
+            frame.setVisible(false);
+            frame.dispose();
             synchronized (ChainReactionClient.monitor){
                 ChainReactionClient.monitor.notify();
             }

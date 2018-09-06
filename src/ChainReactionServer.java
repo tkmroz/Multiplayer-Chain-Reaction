@@ -12,7 +12,7 @@ public class ChainReactionServer extends Hub {
     private static ChainReactionServer server;
     private int playerCount = 0;
     private ArrayList <Player> playerList = new ArrayList<>();
-    private Integer currentPlayer = 1;
+    private Integer currentPlayer = 0;
     private Ball[][] board;
     private LinkedBlockingQueue<ExplodeEvent> explodeQueue;
     private static String handshake;
@@ -39,13 +39,13 @@ public class ChainReactionServer extends Hub {
         if (message instanceof Ball[][]) {
             board = (Ball[][]) message;
             ballPlacer();
-            if (currentPlayer == playerCount) {
-                currentPlayer = 1;
+            if (currentPlayer >= playerCount - 1) {
+                currentPlayer = 0;
                 everyoneGone = true;
             } else {
                 currentPlayer++;
             }
-            board[0][0].setBoardColor(playerList.get(playerCount).getPlayerColor());
+            board[0][0].setBoardColor(playerList.get(currentPlayer).getPlayerColor());
             gameLoop();
         }
     }
@@ -292,7 +292,7 @@ public class ChainReactionServer extends Hub {
     }
 
     private boolean isGameOver() {
-        if(!everyoneGone){return false;}
+        if(everyoneGone){return false;}
         //Go through the board and look for all instances of a players balls
         //if 0 remove from playing
         ArrayList<Integer> gameEnd = new ArrayList<>();

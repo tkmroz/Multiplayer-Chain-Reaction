@@ -73,7 +73,7 @@ public class ChainReactionClient extends Client {
             ballQueue = board[0][0].getBallQueue();
             for (int a = 0; a < board.length; a++) {
                 for (int b = 0; b < board[0].length; b++) {
-                    balls.add(new MovingBall(Ball.returnType(board[a][b]),verticalLines.get(a), horizontalLines.get(b), a, b));
+                    balls.add(new MovingBall(Ball.returnType(board[a][b]),verticalLines.get(a), horizontalLines.get(b), a, b, board[a][b].getValue(), board[a][b].getBallColor()));
                 }
             }
             createWindow();
@@ -176,74 +176,90 @@ public class ChainReactionClient extends Client {
             g.drawLine(verticalLines.get(verticalLines.size() - 1), horizontalLines.get(0), verticalLines.get(verticalLines.size() - 1), horizontalLines.get(horizontalLines.size() - 1));
             //3.Draw Balls
             for(MovingBall m: balls){
+                System.out.println(m.getValue());
                 if (m.getValue() != 0){
+                    System.out.println("MEM");
                     g2.setPaint(gradientPaint(m.getxLocation() + 5, m.getyLocation() + 5, m.getBallColor(), m.getxLocation() + 40, m.getyLocation() + 45));
                     g2.fill(new Ellipse2D.Double(m.getxLocation() + 5, m.getyLocation() + 5, 40, 40));
                     g2.drawString(String.valueOf(m.getValue()),m.getxLocation()+ 5,m.getyLocation() + 5);
                 }
             }
             //4.Test for changes
-            if (ballQueue.peek() != null && ballQueue.size() != 0){
-                for (MovingBall m: balls){
-                    if(m.getBallID() == ballQueue.peek().getBallID()){
-                        animateLoop(m);
+            if (ballQueue.peek() != null && ballQueue.size() != 0) {
+                for (MovingBall m : balls) {
+                    if (m.getBallID() == ballQueue.peek().getBallID()) {
+                        if(!ballQueue.peek().isUsed()){
+                            balls.remove(m);
+                            ballQueue.peek().setUsed(true);
+                            for(int a = 0; a < m.getMaxValue(); a++){
+                                balls.add(m);
+                            }
+                        }
+                        animateLoop((ArrayList<MovingBall>) balls.subList(balls.size()- m.getMaxValue(),balls.size()));
+                        /*int x = nextRow(m.getRow());
+                        int y = nextColumn(m.getColumn());
+                        if (m.getxLocation() == x && m.getyLocation() == y) {
+                            ballQueue.poll();
+                        }
+                        else {
+                            repaint();
+                        }*/
+
                     }
                 }
-                //Test if ball is on mark
-                /*if(){
-                    ballQueue.poll();
-                }
-                repaint();*/
+                //Test if ball is on mark, compare x and y locations to what they should be in the array
+
             }
             //5.Modify and call again
         }
 
-        private void animateLoop(MovingBall m){
-            int x = m.getxLocation();
-            int y = m.getyLocation();
-            if (m.getMaxValue() == 2) {
+        private void animateLoop(ArrayList<MovingBall> movingBalls){
+            MovingBall[] balls = (MovingBall[]) movingBalls.toArray();
+            int x = balls[0].getRow();
+            int y = balls[0].getColumn();
+            if (balls.length == 2) {
                 if ((x == 0 && y == 0)) {
-                    m.setxLocation(m.getxLocation() + 1);
-                    m.setyLocation(m.getyLocation() + 1);
+                    balls[0].setxLocation(balls[0].getxLocation() + 1);
+                    balls[1].setyLocation(balls[1].getyLocation() + 1);
                 }
                 else if (x == 0 && y == (board[0].length - 1)) {
-                    m.setxLocation(m.getxLocation() + 1);
-                    m.setyLocation(m.getyLocation() - 1);
+                    balls[0].setxLocation(balls[0].getxLocation() + 1);
+                    balls[1].setyLocation(balls[1].getyLocation() - 1);
                 }
                 else if (x == (board.length - 1) && y == 0) {
-                    m.setxLocation(m.getxLocation() - 1);
-                    m.setyLocation(m.getyLocation() + 1);
+                    balls[0].setxLocation(balls[0].getxLocation() - 1);
+                    balls[1].setyLocation(balls[1].getyLocation() + 1);
                 }
                 else {
-                    m.setxLocation(m.getxLocation() - 1);
-                    m.setyLocation(m.getyLocation() - 1);
+                    balls[0].setxLocation(balls[0].getxLocation() - 1);
+                    balls[1].setyLocation(balls[1].getyLocation() - 1);
                 }
-            } else if (m.getMaxValue() == 3) {
+            } else if (balls.length == 3) {
                 if (x > 0 && y == 0) {
-                    m.setxLocation(m.getxLocation() + 1);
-                    m.setyLocation(m.getyLocation() + 1);
-                    m.setxLocation(m.getxLocation() - 1);
+                    balls[0].setxLocation(balls[0].getxLocation() + 1);
+                    balls[2].setyLocation(balls[2].getyLocation() + 1);
+                    balls[1].setxLocation(balls[1].getxLocation() - 1);
                 }
                 else if (x > 0 && y == board[0].length - 1) {
-                    m.setxLocation(m.getxLocation() + 1);
-                    m.setxLocation(m.getxLocation() - 1);
-                    m.setyLocation(m.getyLocation() - 1);
+                    balls[0].setxLocation(balls[0].getxLocation() + 1);
+                    balls[1].setxLocation(balls[1].getxLocation() - 1);
+                    balls[2].setyLocation(balls[2].getyLocation() - 1);
                 }
                 else if (x == 0 && y > 0) {
-                    m.setxLocation(m.getxLocation() + 1);
-                    m.setyLocation(m.getyLocation() + 1);
-                    m.setyLocation(m.getyLocation() - 1);
+                    balls[0].setxLocation(balls[0].getxLocation() + 1);
+                    balls[1].setyLocation(balls[1].getyLocation() + 1);
+                    balls[2].setyLocation(balls[2].getyLocation() - 1);
                 }
                 else if (x == board.length - 1 && y > 0) {
-                    m.setxLocation(m.getxLocation() - 1);
-                    m.setyLocation(m.getyLocation() + 1);
-                    m.setyLocation(m.getyLocation() - 1);
+                    balls[0].setxLocation(balls[0].getxLocation() - 1);
+                    balls[1].setyLocation(balls[1].getyLocation() + 1);
+                    balls[2].setyLocation(balls[2].getyLocation() - 1);
                 }
-            } else if (m.getMaxValue() == 4) {
-                m.setxLocation(m.getxLocation() + 1);
-                m.setxLocation(m.getxLocation() - 1);
-                m.setyLocation(m.getyLocation() + 1);
-                m.setyLocation(m.getyLocation() - 1);
+            } else if (balls.length == 4) {
+                balls[0].setxLocation(balls[0].getxLocation() + 1);
+                balls[1].setxLocation(balls[1].getxLocation() - 1);
+                balls[2].setyLocation(balls[2].getyLocation() + 1);
+                balls[3].setyLocation(balls[3].getyLocation() - 1);
             }
         }
         private void mousing() {
@@ -252,6 +268,16 @@ public class ChainReactionClient extends Client {
         private GradientPaint gradientPaint(float x1, float y1, Color c, float x2, float y2) {
             return new GradientPaint(x1, y1, c, x2, y2, Color.BLACK);
         }
+        /*private int nextRow(int val){
+            if(val != 0 && val != rowNumber){
+
+            }
+        }
+        private int nextColumn(int val){
+            if(val > 0 && val < rowNumber){
+
+            }
+        }*/
 
     }
 

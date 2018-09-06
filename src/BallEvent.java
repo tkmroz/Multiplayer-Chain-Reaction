@@ -7,9 +7,9 @@ public class BallEvent {
     private Color ballColor;
     private final String type;
     private final int ballID;
-    /*private int mouseX;
-    private int mouseY;*/
-    BallEvent(int x, int y, int value, Color color){
+    private boolean isUsed;
+
+    BallEvent(int x, int y, int value, Color color) {
         startX = x;
         startY = y;
         ballValue = value;
@@ -26,8 +26,7 @@ public class BallEvent {
                 break;
         }
         ballID = (87 * startX) + (423 * startY);
-        //mouseX = x2;
-       // mouseY = y2;
+        isUsed = false;
     }
 
     public int getStartX() {
@@ -37,15 +36,6 @@ public class BallEvent {
     public int getStartY() {
         return startY;
     }
-
-   /* public int getMouseY() {
-        return mouseY;
-    }
-
-    public int getMouseX() {
-        return mouseX;
-    }*/
-
     public Color getBallColor() {
         return ballColor;
     }
@@ -67,5 +57,14 @@ public class BallEvent {
 
     public int getBallID() {
         return ballID;
+    }
+
+    public boolean isUsed() {
+        return isUsed;
+    }
+
+    public BallEvent setUsed(boolean used) {
+        isUsed = used;
+        return this;
     }
 }
