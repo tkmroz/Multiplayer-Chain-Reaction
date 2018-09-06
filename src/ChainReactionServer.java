@@ -14,6 +14,7 @@ public class ChainReactionServer extends Hub {
     private ArrayList <Player> playerList = new ArrayList<>();
     private Integer currentPlayer = 0;
     private Ball[][] board;
+    private Ball[][] oldBoard;
     private LinkedBlockingQueue<ExplodeEvent> explodeQueue;
     private static String handshake;
     private LinkedBlockingQueue<BallEvent> ballQueue  = new LinkedBlockingQueue<>();
@@ -38,6 +39,7 @@ public class ChainReactionServer extends Hub {
     protected void messageReceived(int playerID, Object message) {
         if (message instanceof Ball[][]) {
             board = (Ball[][]) message;
+            ballQueue.clear();
             ballPlacer();
             if (currentPlayer >= playerCount - 1) {
                 currentPlayer = 0;
@@ -51,9 +53,10 @@ public class ChainReactionServer extends Hub {
     }
 
     private void gameLoop() {
+        board[0][0].setBallQueue(ballQueue);
         sendToAll(board);
         sendToOne(currentPlayer, currentPlayer.toString());
-        ballQueue.clear();
+
     }
 
 
@@ -102,6 +105,8 @@ public class ChainReactionServer extends Hub {
             }
         }
         board[0][0].setBoardColor(Color.RED);
+        oldBoard = board;
+        board[0][0].setOldBoard(oldBoard);
     }
 
     private void ballPlacer() {
@@ -143,7 +148,8 @@ public class ChainReactionServer extends Hub {
      * @param b b place in the array of the explosion
      */
     private void explode(int a, int b) {
-        ballQueue.add(new BallEvent(a, b, board[a][b].getMaxValue(),playerList.get(playerCount).getPlayerColor()));
+        ballQueue.add(new BallEvent(a, b, board[a][b].getMaxValue(),playerList.get(currentPlayer).getPlayerColor()));
+        board[0][0].setOldBoard(board);
         board[a][b].setValue(0);
         if (board[a][b].getMaxValue() == 2) {
             if ((a == 0 && b == 0)) {

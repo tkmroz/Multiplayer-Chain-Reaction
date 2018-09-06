@@ -1,7 +1,7 @@
 
 import java.awt.*;
 
-public class MovingBall extends Ball {
+public class MovingBall extends Ball implements Cloneable{
     private int xLocation;
     private int yLocation;
     private int row;
@@ -41,5 +41,9 @@ public class MovingBall extends Ball {
 
     public int getBallID() {
         return ballID;
+    }
+    @Override
+    protected Object clone() throws CloneNotSupportedException{
+        return super.clone();
     }
 }

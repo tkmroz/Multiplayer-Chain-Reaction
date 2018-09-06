@@ -1,6 +1,7 @@
 import java.awt.*;
+import java.io.Serializable;
 
-public class BallEvent {
+public class BallEvent implements Serializable{
     private int startX;
     private int startY;
     private int ballValue;

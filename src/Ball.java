@@ -14,6 +14,7 @@ public class Ball implements Serializable{
     private final static long serialVersionUID = 123456789;
     private Color boardColor;
     private LinkedBlockingQueue<BallEvent> ballQueue;
+    private Ball[][] oldBoard;
 
     Ball(String type) {
         value = 0;
@@ -95,6 +96,14 @@ public class Ball implements Serializable{
             default:
                 return "Middle";
         }
+    }
+
+    public Ball[][] getOldBoard() {
+        return oldBoard;
+    }
+
+    public void setOldBoard(Ball[][] oldBoard) {
+        this.oldBoard = oldBoard;
     }
 }
 

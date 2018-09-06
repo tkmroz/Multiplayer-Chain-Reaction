@@ -12,7 +12,8 @@ import java.util.ArrayList;
 import java.util.concurrent.LinkedBlockingQueue;
 
 //End goal is to have 5x8, 10x11 and HD all in one game, which only depends on which prefs are selected
-
+//TODO: Add tests for animation;
+//TODO: Add timer for animations
 /**
  * @author Tomasz Mroz
  * @version 0.1
@@ -71,9 +72,10 @@ public class ChainReactionClient extends Client {
                 frame.dispose();
             }
             ballQueue = board[0][0].getBallQueue();
-            for (int a = 0; a < board.length; a++) {
-                for (int b = 0; b < board[0].length; b++) {
-                    balls.add(new MovingBall(Ball.returnType(board[a][b]),verticalLines.get(a), horizontalLines.get(b), a, b, board[a][b].getValue(), board[a][b].getBallColor()));
+            Ball[][] oldBoard = board[0][0].getOldBoard();
+            for (int a = 0; a < oldBoard.length; a++) {
+                for (int b = 0; b < oldBoard[0].length; b++) {
+                    balls.add(new MovingBall(Ball.returnType(oldBoard[a][b]),verticalLines.get(a), horizontalLines.get(b), a, b, oldBoard[a][b].getValue(), oldBoard[a][b].getBallColor()));
                 }
             }
             createWindow();
@@ -175,92 +177,135 @@ public class ChainReactionClient extends Client {
             }
             g.drawLine(verticalLines.get(verticalLines.size() - 1), horizontalLines.get(0), verticalLines.get(verticalLines.size() - 1), horizontalLines.get(horizontalLines.size() - 1));
             //3.Draw Balls
-            for(MovingBall m: balls){
-                System.out.println(m.getValue());
-                if (m.getValue() != 0){
-                    System.out.println("MEM");
+            for (MovingBall m : balls) {
+                if (m.getValue() != 0) {
                     g2.setPaint(gradientPaint(m.getxLocation() + 5, m.getyLocation() + 5, m.getBallColor(), m.getxLocation() + 40, m.getyLocation() + 45));
                     g2.fill(new Ellipse2D.Double(m.getxLocation() + 5, m.getyLocation() + 5, 40, 40));
-                    g2.drawString(String.valueOf(m.getValue()),m.getxLocation()+ 5,m.getyLocation() + 5);
+                    g2.drawString(String.valueOf(m.getValue()), m.getxLocation() + 5, m.getyLocation() + 5);
                 }
             }
             //4.Test for changes
             if (ballQueue.peek() != null && ballQueue.size() != 0) {
-                for (MovingBall m : balls) {
-                    if (m.getBallID() == ballQueue.peek().getBallID()) {
-                        if(!ballQueue.peek().isUsed()){
-                            balls.remove(m);
+                for (int a = 0; a < balls.size(); a++) {
+                    if (balls.get(a).getBallID() == ballQueue.peek().getBallID()) {
+                        MovingBall m = balls.get(a);
+                        if (!ballQueue.peek().isUsed()) {
                             ballQueue.peek().setUsed(true);
-                            for(int a = 0; a < m.getMaxValue(); a++){
-                                balls.add(m);
+                            for (int i = 0; i < m.getMaxValue(); a++) {
+                                try {
+                                    balls.add((MovingBall) m.clone());
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                } finally {
+                                    balls.remove(m);
+                                    m.setValue(0);
+                                    repaint();
+                                }
                             }
-                        }
-                        animateLoop((ArrayList<MovingBall>) balls.subList(balls.size()- m.getMaxValue(),balls.size()));
-                        /*int x = nextRow(m.getRow());
-                        int y = nextColumn(m.getColumn());
-                        if (m.getxLocation() == x && m.getyLocation() == y) {
-                            ballQueue.poll();
-                        }
-                        else {
-                            repaint();
-                        }*/
+                            ArrayList<ArrayList<Integer>> endValues = animateLoop(new ArrayList<>(balls.subList(balls.size() - m.getMaxValue(), balls.size())));
+                            for (Integer x : endValues.get(0)) {
+                                for (Integer y : endValues.get(1)) {
+                                    if (m.getxLocation() == x && m.getyLocation() == y) {
+                                        System.out.println("SUP");
+                                        ballQueue.poll();
+                                    } else {
+                                        repaint();
+                                    }
+                                }
+                            }
 
+                        }
                     }
+                    //Test if ball is on mark, compare x and y locations to what they should be in the array
+
                 }
-                //Test if ball is on mark, compare x and y locations to what they should be in the array
-
             }
-            //5.Modify and call again
-        }
+        }   //5.Modify and call again
 
-        private void animateLoop(ArrayList<MovingBall> movingBalls){
-            MovingBall[] balls = (MovingBall[]) movingBalls.toArray();
+
+        private ArrayList<ArrayList<Integer>> animateLoop(ArrayList<MovingBall> movingBalls){
+            Object[] obs = movingBalls.toArray();
+            MovingBall[] balls = new MovingBall[obs.length];
+            for(int i = 0; i < obs.length; i++){
+                balls[i] = (MovingBall)obs[i];
+            }
             int x = balls[0].getRow();
             int y = balls[0].getColumn();
+            ArrayList<Integer> xInts = new ArrayList<>();
+            ArrayList<Integer> yInts = new ArrayList<>();
             if (balls.length == 2) {
                 if ((x == 0 && y == 0)) {
                     balls[0].setxLocation(balls[0].getxLocation() + 1);
                     balls[1].setyLocation(balls[1].getyLocation() + 1);
+                    xInts.add(verticalLines.get(1));
+                    yInts.add(horizontalLines.get(1));
                 }
                 else if (x == 0 && y == (board[0].length - 1)) {
                     balls[0].setxLocation(balls[0].getxLocation() + 1);
                     balls[1].setyLocation(balls[1].getyLocation() - 1);
+                    xInts.add(verticalLines.get(1));
+                    yInts.add(horizontalLines.get(columnNumber - 1));
                 }
                 else if (x == (board.length - 1) && y == 0) {
                     balls[0].setxLocation(balls[0].getxLocation() - 1);
                     balls[1].setyLocation(balls[1].getyLocation() + 1);
+                    xInts.add(verticalLines.get(rowNumber - 1 ));
+                    yInts.add(horizontalLines.get(1));
                 }
                 else {
                     balls[0].setxLocation(balls[0].getxLocation() - 1);
                     balls[1].setyLocation(balls[1].getyLocation() - 1);
+                    xInts.add(verticalLines.get(rowNumber - 1 ));
+                    yInts.add(horizontalLines.get(columnNumber - 1));
+
                 }
             } else if (balls.length == 3) {
                 if (x > 0 && y == 0) {
                     balls[0].setxLocation(balls[0].getxLocation() + 1);
                     balls[2].setyLocation(balls[2].getyLocation() + 1);
                     balls[1].setxLocation(balls[1].getxLocation() - 1);
+                    xInts.add(verticalLines.get(balls[0].getRow() - 1));
+                    xInts.add(verticalLines.get(balls[0].getRow() + 1));
+                    yInts.add(horizontalLines.get(1));
                 }
                 else if (x > 0 && y == board[0].length - 1) {
                     balls[0].setxLocation(balls[0].getxLocation() + 1);
                     balls[1].setxLocation(balls[1].getxLocation() - 1);
                     balls[2].setyLocation(balls[2].getyLocation() - 1);
+                    xInts.add(verticalLines.get(balls[0].getRow() - 1));
+                    xInts.add(verticalLines.get(balls[0].getRow() + 1));
+                    yInts.add(horizontalLines.get(columnNumber - 1));
                 }
                 else if (x == 0 && y > 0) {
                     balls[0].setxLocation(balls[0].getxLocation() + 1);
                     balls[1].setyLocation(balls[1].getyLocation() + 1);
                     balls[2].setyLocation(balls[2].getyLocation() - 1);
+                    xInts.add(verticalLines.get(1));
+                    yInts.add(horizontalLines.get(balls[0].getColumn() - 1));
+                    yInts.add(horizontalLines.get(balls[0].getColumn() + 1));
                 }
                 else if (x == board.length - 1 && y > 0) {
                     balls[0].setxLocation(balls[0].getxLocation() - 1);
                     balls[1].setyLocation(balls[1].getyLocation() + 1);
                     balls[2].setyLocation(balls[2].getyLocation() - 1);
+                    xInts.add(verticalLines.get(rowNumber - 1 ));
+                    yInts.add(horizontalLines.get(balls[0].getColumn() - 1));
+                    yInts.add(horizontalLines.get(balls[0].getColumn() + 1));
                 }
             } else if (balls.length == 4) {
                 balls[0].setxLocation(balls[0].getxLocation() + 1);
                 balls[1].setxLocation(balls[1].getxLocation() - 1);
                 balls[2].setyLocation(balls[2].getyLocation() + 1);
                 balls[3].setyLocation(balls[3].getyLocation() - 1);
+                xInts.add(verticalLines.get(balls[0].getRow() - 1));
+                xInts.add(verticalLines.get(balls[0].getRow() + 1));
+                yInts.add(horizontalLines.get(balls[0].getColumn() - 1));
+                yInts.add(horizontalLines.get(balls[0].getColumn() + 1));
             }
+            ArrayList<ArrayList<Integer>> temp =  new ArrayList<>();
+            temp.add(xInts);
+            temp.add(yInts);
+            return temp;
         }
         private void mousing() {
             new MouseLoop();
@@ -268,17 +313,6 @@ public class ChainReactionClient extends Client {
         private GradientPaint gradientPaint(float x1, float y1, Color c, float x2, float y2) {
             return new GradientPaint(x1, y1, c, x2, y2, Color.BLACK);
         }
-        /*private int nextRow(int val){
-            if(val != 0 && val != rowNumber){
-
-            }
-        }
-        private int nextColumn(int val){
-            if(val > 0 && val < rowNumber){
-
-            }
-        }*/
-
     }
 
     private class MouseLoop implements MouseListener {
