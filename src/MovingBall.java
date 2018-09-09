@@ -8,6 +8,7 @@ public class MovingBall extends Ball implements Cloneable{
     private int column;
     private final int ballID;
     private int value;
+    private boolean modifiable = false;
     MovingBall(String type, int x, int y, int r, int c, int v, Color color){
         super(type, v, color);
         xLocation = x;
@@ -45,5 +46,13 @@ public class MovingBall extends Ball implements Cloneable{
     @Override
     protected Object clone() throws CloneNotSupportedException{
         return super.clone();
+    }
+
+    public boolean isModifiable() {
+        return modifiable;
+    }
+
+    public void setModifiable(boolean modifiable) {
+        this.modifiable = modifiable;
     }
 }
