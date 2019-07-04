@@ -163,7 +163,7 @@ public class ChainReactionClient extends Client{
         }
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
-            g.setColor(board[0][0].getBoardColor());
+            //g.setColor(board[0][0].getBoardColor());
             Graphics2D g2 = (Graphics2D) g;
             g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
             //vertical lines
@@ -219,7 +219,7 @@ public class ChainReactionClient extends Client{
         MouseLoop() {
         }
         public void mousePressed(MouseEvent e) {
-            ballPlacer(e.getX(), e.getY(),board[0][0].getBoardColor() );
+            //ballPlacer(e.getX(), e.getY(),board[0][0].getBoardColor() );
 
         }
         public void mouseReleased(MouseEvent e) {}
