@@ -6,46 +6,36 @@ import java.util.ArrayList;
 /**
  * Defined variables for Players
  */
+
+/**
+ * TODO: Implement player names
+ */
 public class Player {
-    //private final String playerName;
     private final Color playerColor;
     private final Integer playerNumber;
-    private static ArrayList<Color> colors = new ArrayList<>(9);
-    private boolean hasPlayed;
+    private static Color[]colors = new Color[9];
+    private int playerID;
 
-
-    Player(Integer number){
-        colors.add(Color.RED);
-        colors.add(new Color(0, 120, 0));
-        colors.add(Color.BLUE);
-        colors.add(Color.YELLOW);
-        colors.add(Color.WHITE);
-        colors.add(Color.ORANGE);
-        colors.add(Color.MAGENTA);
-        colors.add(new Color(128,214,255));
-        colors.add(Color.BLACK);
-        //playerName = name;
-        playerColor = colors.get(number);
+    Player(int number, int ID){
+        colors[0] = Color.RED;
+        colors[1] = new Color(0, 120, 0);
+        colors[2] = Color.BLUE;
+        colors[3] = Color.YELLOW;
+        colors[4] = Color.WHITE;
+        colors[5] = Color.ORANGE;
+        colors[6] = Color.MAGENTA;
+        colors[7] = new Color(128,214,255);
+        colors[8] = Color.BLACK;
+        playerColor = colors[number];
         playerNumber = number;
-        hasPlayed = false;
+        playerID = ID;
     }
-    //public String getPlayerName(){
-        //return playerName;
-    //}
-
     public Color getPlayerColor() {
         return playerColor;
     }
 
     public Integer getPlayerNumber(){ return  playerNumber;}
-    public ArrayList<Color> getColors(){
+    public Color[] getColors(){
         return colors;
     }
-    public void setHasPlayed(boolean b){
-        hasPlayed = true;
-    }
-    public boolean isHasPlayed(){
-        return hasPlayed;
-    }
-
 }
