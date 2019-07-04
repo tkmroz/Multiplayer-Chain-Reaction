@@ -3,6 +3,7 @@ import netgame.common.*;
 
 import java.awt.*;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.LinkedBlockingQueue;
 
@@ -12,11 +13,13 @@ public class ChainReactionServer extends Hub {
     private static ChainReactionServer server;
     private int playerCount = 0;
     private HashMap<Integer, Integer> IDHashMap = new HashMap<>();
-    private HashMap<Integer, Player> playerHashMap = new HashMap<>();
     private Integer currentPlayer = 1;
+    private GameBoard gameBoard;
     private Ball[][] board;
     private LinkedBlockingQueue<ExplodeEvent> explodeQueue;
     private static String handshake;
+    private boolean allPlayed = false;
+    private PlayerList playerList = new PlayerList();
 
     private ChainReactionServer() throws IOException {
         super(PORT);
@@ -30,27 +33,30 @@ public class ChainReactionServer extends Hub {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     @Override
     protected void messageReceived(int playerID, Object message) {
-        if (message instanceof Ball[][]) {
-            board = (Ball[][]) message;
-            playerHashMap.get(IDHashMap.get(currentPlayer)).setHasPlayed(true);
+        if (message instanceof GameBoard) {
+            gameBoard = ((GameBoard) message);
+            board = gameBoard.getBoard();
+            gameBoard.setBoard(board);
             ballPlacer();
             if (currentPlayer == playerCount) {
+                if(!(allPlayed)){
+                    allPlayed = true;
+                }
                 currentPlayer = 1;
             } else {
                 currentPlayer++;
             }
-            board[0][0].setBoardColor(playerHashMap.get(IDHashMap.get(currentPlayer)).getPlayerColor());
+            gameBoard.setBoardColor(playerList.get().getPlayerColor());
             gameLoop();
         }
     }
 
     private void gameLoop() {
-        sendToAll(board);
+        sendToAll(gameBoard);
         sendToOne(currentPlayer, currentPlayer.toString());
     }
 
@@ -62,16 +68,16 @@ public class ChainReactionServer extends Hub {
             e.printStackTrace();
         }
 
-        Player player = new Player( playerCount);
+        Player player = new Player(playerCount,playerID);
         IDHashMap.put(playerCount + 1, playerID);
-        playerHashMap.put(playerID, player);
+        playerList.add(player);
         playerCount++;
 
         if (getPlayerList().length == 2) {
             server.shutdownServerSocket();
             startNewGame();
-            sendToAll(board);
-            sendToOne(IDHashMap.get(currentPlayer), currentPlayer.toString());
+            sendToAll(gameBoard);
+            sendToOne(IDHashMap.get(0), currentPlayer.toString());
 
         }
     }
@@ -91,16 +97,16 @@ public class ChainReactionServer extends Hub {
         for (int x = 0; x < board.length; x++) {
             for (int y = 0; y < board[0].length; y++) {
                 if ((x == 0 && y == 0) || (x == 0 && y == (board[0].length - 1)) || (x == (board.length - 1) && y == 0) || (x == (board.length - 1) && y == (board[0].length - 1))) {
-                    board[x][y] = new Ball("Corner");
+                    board[x][y] = new Ball(2);
 
                 } else if ((x != 0 && x != (board.length - 1) && y == 0) || (x != 0 && x != (board.length - 1) && y == (board[0].length - 1)) || (x == 0 && y != (board[0].length - 1)) || (x == (board.length - 1) && y != 0 && y != (board[0].length - 1))) {
-                    board[x][y] = new Ball("Edge");
+                    board[x][y] = new Ball(3);
                 } else {
-                    board[x][y] = new Ball("Middle");
+                    board[x][y] = new Ball(4);
                 }
             }
         }
-        board[0][0].setBoardColor(Color.RED);
+        gameBoard = new GameBoard(board,Color.RED);
     }
 
     private void ballPlacer() {
@@ -112,17 +118,15 @@ public class ChainReactionServer extends Hub {
                 }
             }
         }
+        gameBoard.setExplodeQueue(explodeQueue);
         while (explodeQueue.size() != 0) {
             explode(explodeQueue.peek().getX(), explodeQueue.peek().getY());
             explodeQueue.poll();
         }
-        if (isGameOver()) {
-
-        }
     }
 
     /**
-     * Tests if a square is about to explsoe
+     * Tests if a square is about to explode
      *
      * @param a a place in the array of the explosion
      * @param b b place in the array of the explosion
@@ -251,30 +255,6 @@ public class ChainReactionServer extends Hub {
         }
 
         board[a][b].setBallColor(null);
-        /*if (isGameOver()) {
-            endGame();
-        } */
-    }
-
-    /**
-     * subclass defining some essential variables
-     */
-    private class ExplodeEvent {
-        private int x;
-        private int y;
-
-        private ExplodeEvent(int a, int b) {
-            x = a;
-            y = b;
-        }
-
-        int getX() {
-            return x;
-        }
-
-        int getY() {
-            return y;
-        }
     }
 
     @Override
@@ -316,5 +296,36 @@ public class ChainReactionServer extends Hub {
         }
     */
         return true;
+    }
+    private class PlayerList{
+        ArrayList<Player> playerList;
+        int currentValue = 0;
+        private PlayerList(){
+            playerList = new ArrayList<>();
+        }
+        public Player peekNext(){
+            if(currentValue + 1 != playerList.size()-1){
+                return playerList.get(currentValue + 1);
+            }
+            else{
+                return playerList.get(0);
+            }
+        }
+        public Player next(){
+            if(currentValue + 1 != playerList.size()-1){
+                currentValue++;
+                return playerList.get(currentValue);
+            }
+            else{
+                currentValue = 0;
+                return playerList.get(0);
+            }
+        }
+        public void add(Player p){
+            playerList.add(p);
+        }
+        public Player get(){
+            return playerList.get(currentValue);
+        }
     }
 }
