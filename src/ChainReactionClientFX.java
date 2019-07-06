@@ -8,6 +8,8 @@ import javafx.scene.paint.Stop;
 import netgame.common.Client;
 
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.concurrent.LinkedBlockingQueue;
 
@@ -37,11 +39,10 @@ public class ChainReactionClientFX extends Client{
     private GameBoard gameBoard;
     private Ball[][] board;
     LinkedBlockingQueue<ExplodeEvent> explodeQueue = new LinkedBlockingQueue<>();
-    private static GameScreen screen;
+    private GameScreen screen;
     private boolean isFinished;
     //Potentially could break idek
     private boolean turn;
-
 
     @Override
     protected void messageReceived(Object message) {
@@ -58,13 +59,28 @@ public class ChainReactionClientFX extends Client{
             //endgame
         }
     }
+    @Override
+    protected void extraHandshake(ObjectInputStream in, ObjectOutputStream out) throws IOException {
+        out.writeObject("normal");
+        out.flush();
+    }
     private ChainReactionClientFX(String hubHostName, String[] args) throws IOException  {
         super(hubHostName,PORT);
-        screen = new GameScreen(args);
+        screen = new GameScreen();
+        screen.launcher(args);
+        for (int x = 0; x < rowNumber; x++) {
+            verticalLines.add(length);
+            length = length + (int) (width * .08);
+        }
+        for(int x = 0; x < columnNumber; x++){
+            horizontalLines.add(down);
+            down = down + (int) (width * .08);
+        }
+        verticalLines.add(length);
     }
     public static void main(String[] args) {
         try {
-            new ChainReactionClientFX("10.0.0.50",args);
+            new ChainReactionClientFX("192.168.56.1",args);
         }
         catch (Exception e){
             e.printStackTrace();
@@ -73,7 +89,6 @@ public class ChainReactionClientFX extends Client{
     private class GameScreen extends Application {
 
         public void start(Stage stage) {
-
             Label message = new Label("CHAIN REACTION!");
             message.setFont( new Font(40) );
 
@@ -120,6 +135,9 @@ public class ChainReactionClientFX extends Client{
             stage.setTitle("Chain Reaction");
             boardDrawer(canvas.getGraphicsContext2D(), animationCanvas.getGraphicsContext2D());
             stage.show();
+        }
+        private void launcher(String[] args){
+            launch(args);
         }
         private void boardDrawer(GraphicsContext g,GraphicsContext g2){
             drawLines(g);
@@ -306,21 +324,6 @@ public class ChainReactionClientFX extends Client{
             }
             g.strokeLine(verticalLines.get(verticalLines.size() - 1) , horizontalLines.get(0),
                     verticalLines.get(verticalLines.size() - 1) , horizontalLines.get(horizontalLines.size() - 1));
-        }
-        public void init(){
-            for (int x = 0; x < rowNumber; x++) {
-                verticalLines.add(length);
-                length = length + (int) (width * .08);
-            }
-            for(int x = 0; x < columnNumber; x++){
-                horizontalLines.add(down);
-                down = down + (int) (width * .08);
-            }
-            verticalLines.add(length);
-        }
-
-        public GameScreen(String[] args) {
-            launch(args);  // Run this Application.
         }
 
     }
