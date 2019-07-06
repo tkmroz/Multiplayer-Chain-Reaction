@@ -1,12 +1,12 @@
+import javafx.scene.paint.Color;
+import netgame.common.Hub;
 
-import netgame.common.*;
-
-import java.awt.*;
-import java.io.*;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.LinkedBlockingQueue;
-import javafx.scene.paint.Color;
 
 
 public class ChainReactionServer extends Hub {
@@ -14,13 +14,14 @@ public class ChainReactionServer extends Hub {
     private static ChainReactionServer server;
     private int playerCount = 0;
     private HashMap<Integer, Integer> IDHashMap = new HashMap<>();
-    private Integer currentPlayer = 1;
+    private Integer currentPlayer = 0;
     private GameBoard gameBoard;
     private Ball[][] board;
     private LinkedBlockingQueue<ExplodeEvent> explodeQueue;
     private static String handshake;
     private boolean allPlayed = false;
     private PlayerList playerList = new PlayerList();
+
 
     private ChainReactionServer() throws IOException {
         super(PORT);
@@ -43,22 +44,22 @@ public class ChainReactionServer extends Hub {
             board = gameBoard.getBoard();
             gameBoard.setOldBoard(board);
             ballPlacer();
-            if (currentPlayer == playerCount) {
+            if (currentPlayer == playerCount - 1) {
                 if(!(allPlayed)){
                     allPlayed = true;
                 }
-                currentPlayer = 1;
+                currentPlayer = 0;
             } else {
                 currentPlayer++;
             }
-            gameBoard.setBoardColor(playerList.get().getPlayerColor());
+            gameBoard.setBoardColor( ColorUtil.fxToAwt(playerList.get().getPlayerColor()));
             gameLoop();
         }
     }
 
     private void gameLoop() {
         sendToAll(gameBoard);
-        sendToOne(currentPlayer, "Your Turn");
+        sendToOne(playerList.getList().get(currentPlayer).getPlayerID(), "Your Turn");
     }
 
 
@@ -70,15 +71,15 @@ public class ChainReactionServer extends Hub {
         }
 
         Player player = new Player(playerCount,playerID);
-        IDHashMap.put(playerCount + 1, playerID);
+        IDHashMap.put(playerCount, playerID);
         playerList.add(player);
         playerCount++;
 
-        if (getPlayerList().length == 2) {
+        if (getPlayerList().length == 1) {
             server.shutdownServerSocket();
             startNewGame();
             sendToAll(gameBoard);
-            sendToOne(IDHashMap.get(0), currentPlayer.toString());
+            sendToOne(IDHashMap.get(0), "Your Turn");
 
         }
     }
@@ -107,9 +108,11 @@ public class ChainReactionServer extends Hub {
                 } else {
                     board[x][y] = new Ball(4);
                 }
+                board[x][y].setValue(1);
+                board[x][y].setBallColor(java.awt.Color.RED);
             }
         }
-        gameBoard = new GameBoard(board,Color.RED);
+        gameBoard = new GameBoard(board,ColorUtil.fxToAwt(Color.RED));
     }
 
     private void ballPlacer() {
@@ -276,18 +279,24 @@ public class ChainReactionServer extends Hub {
     }
 
     private boolean isGameOver() {
-        for(Player p:playerList.getList()){
+        ArrayList<Integer> scheduledForRemoval = new ArrayList<>();
+        for(int x = 0; x < playerList.getList().size(); x++){
             int count = 0;
             for(int a = 0; a < gameBoard.getBoard().length; a++){
                 for(int b =0; b <gameBoard.getBoard()[0].length; b++){
-                    if(gameBoard.getBoard()[a][b].getBallColor().equals(p.getPlayerColor())){
+                    if(gameBoard.getBoard()[a][b].getBallColor() != null &&
+                            gameBoard.getBoard()[a][b].getBallColor().equals(ColorUtil.fxToAwt( playerList.getList().get(x).getPlayerColor()))){
                         count++;
                     }
                 }
             }
             if(count == 0){
-                playerList.getList().remove(p);
+                scheduledForRemoval.add(x);
+                //playerList.getList().remove(p);
             }
+        }
+        for(Integer x:scheduledForRemoval){
+            playerList.getList().remove(x);
         }
         return playerList.getList().size() <= 1;
     }

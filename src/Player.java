@@ -1,12 +1,8 @@
-
 import javafx.scene.paint.Color;
-import java.util.ArrayList;
 
 /**
  * Defined variables for Players
- */
 
-/**
  * TODO: Implement player names
  */
 public class Player {
@@ -36,5 +32,8 @@ public class Player {
     public Integer getPlayerNumber(){ return  playerNumber;}
     public Color[] getColors(){
         return colors;
+    }
+    public int getPlayerID(){
+        return playerID;
     }
 }

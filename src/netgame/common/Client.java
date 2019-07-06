@@ -214,6 +214,7 @@ abstract public class Client {
     /**
      *  This private class handles the actual communication with the server.
      */
+    @SuppressWarnings("CatchMayIgnoreException")
     private  class ConnectionToHub {
 
         private final int id_number;               // The ID of this client, assigned by the hub.

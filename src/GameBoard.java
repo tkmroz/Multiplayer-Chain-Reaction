@@ -1,10 +1,9 @@
 import java.awt.*;
-import java.util.concurrent.LinkedBlockingQueue;
 import java.io.Serializable;
+import java.util.concurrent.LinkedBlockingQueue;
 
-import javafx.scene.paint.Color;
 
-public class GameBoard {
+public class GameBoard implements Serializable{
     private LinkedBlockingQueue<ExplodeEvent> explodeQueue;
     private Ball[][] board;
     private Ball[][] oldBoard;

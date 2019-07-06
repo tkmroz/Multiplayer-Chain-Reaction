@@ -1,6 +1,9 @@
 package netgame.common;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.TreeMap;
@@ -60,6 +63,7 @@ import java.util.concurrent.LinkedBlockingQueue;
  *  One second later, any connection that has not closed normally is closed.
  *  </ul>
  */
+@SuppressWarnings({"AnonymousHasLambdaAlternative", "CatchMayIgnoreException"})
 public class Hub {
 
     /**

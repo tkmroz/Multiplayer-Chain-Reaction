@@ -3,8 +3,6 @@
 import java.awt.*;
 import java.io.Serializable;
 
-import javafx.scene.paint.Color;
-
 /**
  * Defines important ball variables used in the array
  */
