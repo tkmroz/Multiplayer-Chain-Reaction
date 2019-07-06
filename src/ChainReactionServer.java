@@ -6,6 +6,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.LinkedBlockingQueue;
+import javafx.scene.paint.Color;
 
 
 public class ChainReactionServer extends Hub {
@@ -40,7 +41,7 @@ public class ChainReactionServer extends Hub {
         if (message instanceof GameBoard) {
             gameBoard = ((GameBoard) message);
             board = gameBoard.getBoard();
-            gameBoard.setBoard(board);
+            gameBoard.setOldBoard(board);
             ballPlacer();
             if (currentPlayer == playerCount) {
                 if(!(allPlayed)){
@@ -57,7 +58,7 @@ public class ChainReactionServer extends Hub {
 
     private void gameLoop() {
         sendToAll(gameBoard);
-        sendToOne(currentPlayer, currentPlayer.toString());
+        sendToOne(currentPlayer, "Your Turn");
     }
 
 
@@ -96,10 +97,12 @@ public class ChainReactionServer extends Hub {
         }
         for (int x = 0; x < board.length; x++) {
             for (int y = 0; y < board[0].length; y++) {
-                if ((x == 0 && y == 0) || (x == 0 && y == (board[0].length - 1)) || (x == (board.length - 1) && y == 0) || (x == (board.length - 1) && y == (board[0].length - 1))) {
+                if ((x == 0 && y == 0) || (x == 0 && y == (board[0].length - 1)) || (x == (board.length - 1) && y == 0)
+                        || (x == (board.length - 1) && y == (board[0].length - 1))) {
                     board[x][y] = new Ball(2);
 
-                } else if ((x != 0 && x != (board.length - 1) && y == 0) || (x != 0 && x != (board.length - 1) && y == (board[0].length - 1)) || (x == 0 && y != (board[0].length - 1)) || (x == (board.length - 1) && y != 0 && y != (board[0].length - 1))) {
+                } else if ((x != 0 && x != (board.length - 1) && y == 0) || (x != 0 && x != (board.length - 1) && y == (board[0].length - 1))
+                        || (x == 0 && y != (board[0].length - 1)) || (x == (board.length - 1) && y != 0 && y != (board[0].length - 1))) {
                     board[x][y] = new Ball(3);
                 } else {
                     board[x][y] = new Ball(4);
@@ -123,6 +126,10 @@ public class ChainReactionServer extends Hub {
             explode(explodeQueue.peek().getX(), explodeQueue.peek().getY());
             explodeQueue.poll();
         }
+        if(isGameOver()){
+            endGame();
+        }
+        gameBoard.setBoard(board);
     }
 
     /**
@@ -269,33 +276,20 @@ public class ChainReactionServer extends Hub {
     }
 
     private boolean isGameOver() {
-        /*HashMap<Player, Integer> playerEnd = new HashMap<>();
-        for(int a = 0; a < playerCount; a++){
-            playerEnd.put( playerHashMap.get(IDHashMap.get(a)), 0);
-        }
-        for (int x = 0; x < playerHashMap.get(0).getColors().size() - 1; x++) {
-            for (int a = 0; a < board.length; a++) {
-                for (int b = 0; b < board[0].length; b++) {
-                    if (board[a][b].getBallColor() != null) {
-                        if ((board[a][b].getBallColor().equals(new Player( -1).getColors().get(x)))) {
-                            int y = playerEnd.get(new Player(x));
-                            playerEnd.remove(new Player(x));
-                            playerEnd.put( playerHashMap.get(IDHashMap.get(a + 1)), y++);
-                        }
+        for(Player p:playerList.getList()){
+            int count = 0;
+            for(int a = 0; a < gameBoard.getBoard().length; a++){
+                for(int b =0; b <gameBoard.getBoard()[0].length; b++){
+                    if(gameBoard.getBoard()[a][b].getBallColor().equals(p.getPlayerColor())){
+                        count++;
                     }
                 }
             }
+            if(count == 0){
+                playerList.getList().remove(p);
+            }
         }
-        for (int x = 0; x < playerCount; x++){
-            //Player player = playerEnd.get(playerHashMap.get(IDHashMap.get(x)));
-            //if(playerEnd)
-        }
-        if () {
-        } else {
-            return false;
-        }
-    */
-        return true;
+        return playerList.getList().size() <= 1;
     }
     private class PlayerList{
         ArrayList<Player> playerList;
@@ -321,11 +315,15 @@ public class ChainReactionServer extends Hub {
                 return playerList.get(0);
             }
         }
-        public void add(Player p){
+        void add(Player p){
             playerList.add(p);
         }
-        public Player get(){
+        Player get(){
             return playerList.get(currentValue);
         }
+        ArrayList<Player> getList(){ return playerList; }
+    }
+    private void endGame(){
+        sendToAll("YOU WON!");
     }
 }

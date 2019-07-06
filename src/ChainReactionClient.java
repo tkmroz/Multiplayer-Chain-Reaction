@@ -10,12 +10,14 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.concurrent.LinkedBlockingQueue;
 
 //End goal is to have 5x8, 10x11 and HD all in one game, which only depends on which prefs are selected
 
 /**
  * @author Tomasz Mroz
- * @version 0.1
+ * @version 0.2
+ * @deprecated
  * Client program for Multiplayer Chain Reaction
  * Needs a valid server ip as an command line argument
  * Allows a user to choose a preferred game size, which needs to be the same as the server
@@ -37,6 +39,8 @@ public class ChainReactionClient extends Client{
     private static final Object monitor = new Object();
     private static String handshake;
     private static boolean isBroken = false;
+    private GameBoard gameBoard;
+    private LinkedBlockingQueue<ExplodeEvent> explodeQueue;
 
     private ChainReactionClient(String hubHostName) throws IOException, ButtonError {
         super(hubHostName, PORT);
@@ -85,16 +89,17 @@ public class ChainReactionClient extends Client{
         content.add(classicRadio);
         content.add(normalRadio);
         content.add(HDRadio);
-        classicRadio.setBounds(0,0,100,25);
-        normalRadio.setBounds(100,0,100,25);
-        HDRadio.setBounds(200,0,100,25);
-        content.setPreferredSize(new Dimension(300, 50));
+        int buttonWidth = 120;
+        classicRadio.setBounds(0,0,buttonWidth,25);
+        normalRadio.setBounds(0,25,buttonWidth,25);
+        HDRadio.setBounds(0,50,buttonWidth,25);
+        content.setPreferredSize(new Dimension(buttonWidth, 100));
         content.setBackground(Color.BLACK);
         JButton button = new JButton("OK");
         content.add(button);
         ButtonHandler b = new ButtonHandler();
         button.addActionListener(b);
-        button.setBounds(100,25,100,25);
+        button.setBounds(0,75,buttonWidth,25);
         frame.pack();
     }
     private static void setValues(){
@@ -123,14 +128,19 @@ public class ChainReactionClient extends Client{
 
     @Override
     protected void messageReceived(Object message) {
-        if (message instanceof Ball[][]) {
+        if (message instanceof GameBoard) {
             if (frame != null){ frame.dispose(); }
-            board = (Ball[][]) message;
+            gameBoard =(GameBoard) message;
+            board = gameBoard.getBoard();
+            explodeQueue = gameBoard.getExplodeQueue();
             createWindow();
             loop.redraw();
         }
-        if (message instanceof String) {
+        if (message instanceof String && message.equals("Your Turn")) {
             loop.mousing();
+        }
+        if(message instanceof String && message.equals("YOU WON!")){
+            //endgame
         }
     }
     private void createWindow() {
@@ -156,14 +166,14 @@ public class ChainReactionClient extends Client{
     }
 
     private class DrawingLoop extends JPanel {
-        private DrawingLoop() {
+       /* private DrawingLoop() {
             setLayout(new BorderLayout(3, 3));
             setPreferredSize(new Dimension(625, 700));
 
         }
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
-            //g.setColor(board[0][0].getBoardColor());
+            g.setColor(gameBoard.getBoardColor());
             Graphics2D g2 = (Graphics2D) g;
             g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
             //vertical lines
@@ -175,20 +185,28 @@ public class ChainReactionClient extends Client{
                 g.drawLine(verticalLines.get(0) ,  horizontalLines.get(x) , verticalLines.get(verticalLines.size() - 1) , horizontalLines.get(x) );
             }
             //g.drawLine(verticalLines.get(0), down, verticalLines.get(verticalLines.size() - 1), down);
-            g.drawLine(verticalLines.get(verticalLines.size() - 1) , horizontalLines.get(0) , verticalLines.get(verticalLines.size() - 1) , horizontalLines.get(horizontalLines.size() - 1));
-            for (int x = 0; x < board.length; x++) {
-                for (int y = 0; y < board[0].length; y++) {
-                    if (board[x][y].getValue() != 0) {
-                        GradientPaint gradientPaint = new GradientPaint(verticalLines.get(x) + 5, (horizontalLines.get(y)) + 5, board[x][y].getBallColor(), (float) (verticalLines.get(x)) + 45, (float) horizontalLines.get(y) + 45, Color.BLACK);
-                        g2.setPaint(gradientPaint);
-                        g2.fill(new Ellipse2D.Double(verticalLines.get(x) + 5, (horizontalLines.get(y)) + 5, 40, 40));
-                        g.drawString(String.valueOf(board[x][y].getValue()), ((verticalLines.get(x)) + 5), (horizontalLines.get(y)) + 5);
+            g.drawLine(verticalLines.get(verticalLines.size() - 1) , horizontalLines.get(0),
+                    verticalLines.get(verticalLines.size() - 1) , horizontalLines.get(horizontalLines.size() - 1));
+            if(explodeQueue.peek() != null){
+
+            }
+            else{
+                for (int x = 0; x < board.length; x++) {
+                    for (int y = 0; y < board[0].length; y++) {
+                        if (board[x][y].getValue() != 0) {
+                            GradientPaint gradientPaint = new GradientPaint(verticalLines.get(x) + 5,
+                                    (horizontalLines.get(y)) + 5, board[x][y].getBallColor(),
+                                    (float) (verticalLines.get(x)) + 45, (float) horizontalLines.get(y) + 45, Color.BLACK);
+                            g2.setPaint(gradientPaint);
+                            g2.fill(new Ellipse2D.Double(verticalLines.get(x) + 5, (horizontalLines.get(y)) + 5, 40, 40));
+                            g.drawString(String.valueOf(board[x][y].getValue()), ((verticalLines.get(x)) + 5), (horizontalLines.get(y)) + 5);
+
+                        }
 
                     }
-
                 }
             }
-        }
+        }*/
         private void redraw() {
             repaint();
         }
@@ -216,18 +234,10 @@ public class ChainReactionClient extends Client{
     }
 
     private class MouseLoop implements MouseListener{
-        MouseLoop() {
-        }
-        public void mousePressed(MouseEvent e) {
-            //ballPlacer(e.getX(), e.getY(),board[0][0].getBoardColor() );
-
-        }
+        public void mousePressed(MouseEvent e) { ballPlacer(e.getX(), e.getY(),Color.BLACK ); }
         public void mouseReleased(MouseEvent e) {}
-
         public void mouseEntered(MouseEvent e) {}
-
         public void mouseExited(MouseEvent e) {}
-
         public void mouseClicked(MouseEvent e) {}
     }
 
@@ -237,14 +247,12 @@ public class ChainReactionClient extends Client{
             return false;
         } else if ((color == null)) {
             return true;
-        } else {
-            return true;
         }
+        return true;
     }
     private void ballPlacer(int x, int y, Color color) {
-        boolean moveLegal = isMoveLegal(x, y, color);
         int xBallPosition = 0, yBallPosition = 0;
-        if (!moveLegal) {
+        if (!isMoveLegal(x, y, color)) {
             return;
         }
         for (int a = 0; a < verticalLines.size() - 1; a++) {
@@ -268,8 +276,9 @@ public class ChainReactionClient extends Client{
             return;
         }
         board[xBallPosition][yBallPosition].setValue((board[xBallPosition][yBallPosition].getValue()) + 1);
-        board[xBallPosition][yBallPosition].setBallColor(color);
-        send(board);
+        //board[xBallPosition][yBallPosition].setBallColor(Color.BLACK);
+        gameBoard.setBoard(board);
+        send(gameBoard);
     }
     @Override
     protected void extraHandshake(ObjectInputStream in, ObjectOutputStream out) throws IOException {
@@ -288,5 +297,123 @@ public class ChainReactionClient extends Client{
             }
             setValues();
         }
+    }
+    private void explode(int a, int b) {
+        board[a][b].setValue(0);
+        if (board[a][b].getMaxValue() == 2) {
+            if ((a == 0 && b == 0)) {
+                board[a + 1][b].setValue(board[a + 1][b].getValue() + 1);
+                board[a][b + 1].setValue(board[a][b + 1].getValue() + 1);
+
+                board[a + 1][b].setBallColor(board[a][b].getBallColor());
+                board[a][b + 1].setBallColor(board[a][b].getBallColor());
+
+                doesExplode(a + 1, b);
+                doesExplode(a, b + 1);
+
+            } else if (a == 0 && b == (board[0].length - 1)) {
+                board[a + 1][b].setValue(board[a + 1][b].getValue() + 1);
+                board[a][b - 1].setValue(board[a][b - 1].getValue() + 1);
+
+                board[a + 1][b].setBallColor(board[a][b].getBallColor());
+                board[a][b - 1].setBallColor(board[a][b].getBallColor());
+
+                doesExplode(a + 1, b);
+                doesExplode(a, b - 1);
+
+            } else if (a == (board.length - 1) && b == 0) {
+                board[a - 1][b].setValue(board[a - 1][b].getValue() + 1);
+                board[a][b + 1].setValue(board[a][b + 1].getValue() + 1);
+
+                board[a][b + 1].setBallColor(board[a][b].getBallColor());
+                board[a - 1][b].setBallColor(board[a][b].getBallColor());
+
+                doesExplode(a, b + 1);
+                doesExplode(a - 1, b);
+            } else {
+                board[a - 1][b].setValue(board[a - 1][b].getValue() + 1);
+                board[a][b - 1].setValue(board[a][b - 1].getValue() + 1);
+
+                board[a - 1][b].setBallColor(board[a][b].getBallColor());
+                board[a][b - 1].setBallColor(board[a][b].getBallColor());
+
+                doesExplode(a - 1, b);
+                doesExplode(a, b - 1);
+            }
+        } else if (board[a][b].getMaxValue() == 3) {
+            if (a > 0 && b == 0) {
+                board[a - 1][b].setValue(board[a - 1][b].getValue() + 1);
+                board[a][b + 1].setValue(board[a][b + 1].getValue() + 1);
+                board[a + 1][b].setValue(board[a + 1][b].getValue() + 1);
+
+                board[a + 1][b].setBallColor(board[a][b].getBallColor());
+                board[a][b + 1].setBallColor(board[a][b].getBallColor());
+                board[a - 1][b].setBallColor(board[a][b].getBallColor());
+
+                doesExplode(a + 1, b);
+                doesExplode(a, b + 1);
+                doesExplode(a - 1, b);
+            } else if (a > 0 && b == board[0].length - 1) {
+                board[a - 1][b].setValue(board[a - 1][b].getValue() + 1);
+                board[a][b - 1].setValue(board[a][b - 1].getValue() + 1);
+                board[a + 1][b].setValue(board[a + 1][b].getValue() + 1);
+
+                board[a + 1][b].setBallColor(board[a][b].getBallColor());
+                board[a - 1][b].setBallColor(board[a][b].getBallColor());
+                board[a][b - 1].setBallColor(board[a][b].getBallColor());
+
+                doesExplode(a + 1, b);
+                doesExplode(a - 1, b);
+                doesExplode(a, b - 1);
+
+            } else if (a == 0 && b > 0) {
+                board[a][b - 1].setValue(board[a][b - 1].getValue() + 1);
+                board[a + 1][b].setValue(board[a + 1][b].getValue() + 1);
+                board[a][b + 1].setValue(board[a][b + 1].getValue() + 1);
+
+                board[a][b + 1].setBallColor(board[a][b].getBallColor());
+                board[a][b - 1].setBallColor(board[a][b].getBallColor());
+                board[a + 1][b].setBallColor(board[a][b].getBallColor());
+
+                doesExplode(a + 1, b);
+                doesExplode(a, b + 1);
+                doesExplode(a, b - 1);
+            } else if (a == board.length - 1 && b > 0) {
+                board[a][b - 1].setValue(board[a][b - 1].getValue() + 1);
+                board[a - 1][b].setValue(board[a - 1][b].getValue() + 1);
+                board[a][b + 1].setValue(board[a][b + 1].getValue() + 1);
+
+                board[a][b + 1].setBallColor(board[a][b].getBallColor());
+                board[a - 1][b].setBallColor(board[a][b].getBallColor());
+                board[a][b - 1].setBallColor(board[a][b].getBallColor());
+
+                doesExplode(a, b + 1);
+                doesExplode(a - 1, b);
+                doesExplode(a, b - 1);
+            }
+        } else if (board[a][b].getMaxValue() == 4) {
+            board[a + 1][b].setValue(board[a + 1][b].getValue() + 1);
+            board[a - 1][b].setValue(board[a - 1][b].getValue() + 1);
+            board[a][b + 1].setValue(board[a][b + 1].getValue() + 1);
+            board[a][b - 1].setValue(board[a][b - 1].getValue() + 1);
+
+            board[a + 1][b].setBallColor(board[a][b].getBallColor());
+            board[a - 1][b].setBallColor(board[a][b].getBallColor());
+            board[a][b + 1].setBallColor(board[a][b].getBallColor());
+            board[a][b - 1].setBallColor(board[a][b].getBallColor());
+
+            doesExplode(a + 1, b);
+            doesExplode(a, b + 1);
+            doesExplode(a - 1, b);
+            doesExplode(a, b - 1);
+        }
+
+        board[a][b].setBallColor(null);
+    }
+    private void doesExplode(int a, int b) {
+        if ((board[a][b].getValue() >= board[a][b].getMaxValue())) {
+            explodeQueue.add(new ExplodeEvent(a, b));
+        }
+
     }
 }

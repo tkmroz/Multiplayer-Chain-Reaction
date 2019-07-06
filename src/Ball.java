@@ -3,6 +3,8 @@
 import java.awt.*;
 import java.io.Serializable;
 
+import javafx.scene.paint.Color;
+
 /**
  * Defines important ball variables used in the array
  */
@@ -10,7 +12,7 @@ class Ball implements Serializable{
     private Color ballColor;
     private final int maxValue;
     private int value;
-    private final static long serialVersionUID = 123456789;
+    private final static long serialVersionUID = 123456788;
 
     Ball(int type) {
         value = 0;

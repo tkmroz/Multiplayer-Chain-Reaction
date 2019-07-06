@@ -2,7 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7c1259c2-471d-4725-a09d-f67a632f054a" name="Default" comment="Rewrote Server code">
+      <change afterPath="$PROJECT_DIR$/src/ChainReactionClientFX.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Multiplayer Chain Reaction/Ball.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Multiplayer Chain Reaction/Ball.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Multiplayer Chain Reaction/ChainReactionClient$DrawingLoop.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Multiplayer Chain Reaction/ChainReactionClient$DrawingLoop.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Multiplayer Chain Reaction/ChainReactionClient$Frame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Multiplayer Chain Reaction/ChainReactionClient$Frame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Multiplayer Chain Reaction/ChainReactionClient$MouseLoop.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Multiplayer Chain Reaction/ChainReactionClient$MouseLoop.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Multiplayer Chain Reaction/ChainReactionClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Multiplayer Chain Reaction/ChainReactionClient.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Multiplayer Chain Reaction/ChainReactionServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Multiplayer Chain Reaction/ChainReactionServer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Multiplayer Chain Reaction/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Multiplayer Chain Reaction/Player.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Ball.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ball.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ChainReactionClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ChainReactionClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ChainReactionServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ChainReactionServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <manually-removed-from-ignored>
@@ -25,17 +38,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../Chain Reaction/src/ChainReaction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="215">
+            <state relative-caret-position="6079">
               <caret line="658" lean-forward="true" selection-start-line="658" selection-end-line="658" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Ball.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="183">
-              <caret line="12" column="59" selection-start-line="12" selection-start-column="59" selection-end-line="12" selection-end-column="59" />
+            <state relative-caret-position="-21">
+              <caret line="5" column="32" selection-start-line="5" selection-start-column="32" selection-end-line="5" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -43,36 +56,14 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ChainReactionClient.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/ChainReactionClientFX.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="19" column="54" lean-forward="true" selection-start-line="19" selection-start-column="54" selection-end-line="19" selection-end-column="54" />
+            <state relative-caret-position="-342">
+              <caret line="80" column="50" selection-start-line="80" selection-start-column="50" selection-end-line="80" selection-end-column="50" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#selector#0;class#ChainReactionClient#0" />
-                <element signature="method#setValues#0;class#ChainReactionClient#0" />
-                <element signature="method#createWindow#0;class#ChainReactionClient#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ChainReactionServer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="78" column="33" lean-forward="true" selection-start-line="78" selection-start-column="33" selection-end-line="78" selection-end-column="33" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#main#0;class#ChainReactionServer#0" />
-                <element signature="method#ballPlacer#0;class#ChainReactionServer#0" />
-                <element signature="docComment;method#doesExplode#0;class#ChainReactionServer#0" />
-                <element signature="method#doesExplode#0;class#ChainReactionServer#0" />
-                <element signature="docComment;method#explode#0;class#ChainReactionServer#0" />
-                <element signature="method#explode#0;class#ChainReactionServer#0" />
-                <element signature="method#extraHandshake#0;class#ChainReactionServer#0" />
-                <element signature="class#PlayerList#0;class#ChainReactionServer#0" />
+                <element signature="e#14469#14470#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -81,8 +72,25 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ExplodeEvent.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" lean-forward="true" selection-end-line="16" selection-end-column="1" />
+            <state relative-caret-position="221">
+              <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ChainReactionServer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="302">
+              <caret line="259" column="30" selection-start-line="154" selection-start-column="8" selection-end-line="264" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="method#main#0;class#ChainReactionServer#0" />
+                <element signature="docComment;method#doesExplode#0;class#ChainReactionServer#0" />
+                <element signature="method#extraHandshake#0;class#ChainReactionServer#0" />
+                <element signature="e#11821#11822#0" expanded="true" />
+                <element signature="e#11848#11849#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -90,8 +98,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GameBoard.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="13" column="5" lean-forward="true" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
+            <state relative-caret-position="68">
+              <caret line="4" column="32" selection-start-line="4" selection-start-column="32" selection-end-line="4" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -102,8 +110,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Player.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="141">
-              <caret line="21" column="31" lean-forward="true" selection-start-line="21" selection-start-column="31" selection-end-line="21" selection-end-column="31" />
+            <state relative-caret-position="459">
+              <caret line="35" column="30" lean-forward="true" selection-start-line="35" selection-start-column="30" selection-end-line="35" selection-end-column="30" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -119,13 +130,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>connection</find>
-      <find>extra</find>
-      <find>reac</find>
-      <find>mouse eve</find>
-      <find>repaint</find>
-      <find>tree</find>
-      <find>client send</find>
       <find>Client receive thread terminated by IOException:</find>
       <find>cu</find>
       <find>error</find>
@@ -148,9 +152,20 @@
       <find>board</find>
       <find>ExplodeEvent</find>
       <find>send</find>
+      <find>mousing</find>
+      <find>MOuse</find>
+      <find>redraw</find>
+      <find>classic</find>
+      <find>explodeE</find>
+      <find>ballDrawer(verticalLines.get(x)-1, horizontalLines.get(y),g2);</find>
+      <find>ballDrawer(x,y,g2,&quot;&quot;,&quot;+&quot;);</find>
+      <find>ballDrawer(x,y,g2,&quot;&quot;,&quot;-&quot;);</find>
     </findStrings>
     <replaceStrings>
       <replace>horizontalLines.get(y)</replace>
+      <replace>ballDrawer(x,y,g2,&quot;-&quot;,&quot;&quot;);</replace>
+      <replace>ballDrawer(x,y,g2,&quot;&quot;,&quot;&quot;,counter);</replace>
+      <replace>ballDrawer(x,y,g2,&quot;&quot;,&quot;-&quot;,counter);</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -183,10 +198,12 @@
         <option value="$PROJECT_DIR$/../Chain Reaction/src/ChainReaction.java" />
         <option value="$PROJECT_DIR$/src/ExplodeEvent.java" />
         <option value="$PROJECT_DIR$/src/Player.java" />
-        <option value="$PROJECT_DIR$/src/GameBoard.java" />
-        <option value="$PROJECT_DIR$/src/ChainReactionServer.java" />
-        <option value="$PROJECT_DIR$/src/ChainReactionClient.java" />
+        <option value="$PROJECT_DIR$/src/HelloWorldFX.java" />
         <option value="$PROJECT_DIR$/src/Ball.java" />
+        <option value="$PROJECT_DIR$/src/GameBoard.java" />
+        <option value="$PROJECT_DIR$/src/ChainReactionClient.java" />
+        <option value="$PROJECT_DIR$/src/ChainReactionServer.java" />
+        <option value="$PROJECT_DIR$/src/ChainReactionClientFX.java" />
       </list>
     </option>
   </component>
@@ -242,18 +259,40 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Server Normal">
+  <component name="RunManager" selected="Application.HelloWorldFX">
     <configuration default="true" type="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ChainReactionClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="ChainReaction" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ChainReaction" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ChainReactionClient" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ChainReactionClient" />
       <module name="Multiplayer Chain Reaction" />
       <option name="PROGRAM_PARAMETERS" value="&quot;10.0.0.50&quot;" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ChainReactionClientFX" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ChainReactionClientFX" />
+      <module name="Multiplayer Chain Reaction" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HelloWorldFX" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="HelloWorldFX" />
+      <module name="Multiplayer Chain Reaction" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -311,9 +350,15 @@
       <item itemvalue="Application.Server Normal" />
       <item itemvalue="Application.Server HD" />
       <item itemvalue="Application.ChainReactionClient" />
+      <item itemvalue="Application.ChainReaction" />
+      <item itemvalue="Application.ChainReactionClientFX" />
+      <item itemvalue="Application.HelloWorldFX" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.HelloWorldFX" />
+        <item itemvalue="Application.ChainReactionClientFX" />
+        <item itemvalue="Application.ChainReaction" />
         <item itemvalue="Application.ChainReactionClient" />
       </list>
     </recent_temporary>
@@ -364,7 +409,14 @@
       <option name="project" value="LOCAL" />
       <updated>1531507283340</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Rewrote Server code">
+      <created>1562274720901</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1562274720901</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -380,13 +432,13 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32993197" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49121523" weight="0.29248366" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4969743" weight="0.38235295" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49121523" weight="0.29081634" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4969743" weight="0.3809524" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.4969743" weight="0.3293718" />
-      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50226927" side_tool="true" visible="true" weight="0.3282313" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50226927" side_tool="true" weight="0.3282313" />
       <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.4977307" weight="0.3282313" />
       <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.49707174" weight="0.3282313" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -608,13 +660,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/netgame/common/Client.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="79">
-          <caret line="340" column="27" selection-start-line="340" selection-start-column="24" selection-end-line="340" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/idk.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -631,48 +676,35 @@
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ChainReactionClient.java">
+    <entry file="file://$PROJECT_DIR$/src/HelloWorldFX.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="19" column="54" lean-forward="true" selection-start-line="19" selection-start-column="54" selection-end-line="19" selection-end-column="54" />
+        <state relative-caret-position="170">
+          <caret line="10" column="32" lean-forward="true" selection-start-line="9" selection-start-column="30" selection-end-line="10" selection-end-column="32" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#selector#0;class#ChainReactionClient#0" />
-            <element signature="method#setValues#0;class#ChainReactionClient#0" />
-            <element signature="method#createWindow#0;class#ChainReactionClient#0" />
+            <element signature="e#1329#1330#0" expanded="true" />
+            <element signature="e#1383#1384#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ChainReactionServer.java">
+    <entry file="file://$PROJECT_DIR$/../Chain Reaction/src/ChainReaction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="78" column="33" lean-forward="true" selection-start-line="78" selection-start-column="33" selection-end-line="78" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#main#0;class#ChainReactionServer#0" />
-            <element signature="method#ballPlacer#0;class#ChainReactionServer#0" />
-            <element signature="docComment;method#doesExplode#0;class#ChainReactionServer#0" />
-            <element signature="method#doesExplode#0;class#ChainReactionServer#0" />
-            <element signature="docComment;method#explode#0;class#ChainReactionServer#0" />
-            <element signature="method#explode#0;class#ChainReactionServer#0" />
-            <element signature="method#extraHandshake#0;class#ChainReactionServer#0" />
-            <element signature="class#PlayerList#0;class#ChainReactionServer#0" />
-          </folding>
+        <state relative-caret-position="6079">
+          <caret line="658" lean-forward="true" selection-start-line="658" selection-end-line="658" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ExplodeEvent.java">
+    <entry file="file://$PROJECT_DIR$/src/netgame/common/Client.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" lean-forward="true" selection-end-line="16" selection-end-column="1" />
+        <state relative-caret-position="5347">
+          <caret line="347" column="49" selection-start-line="347" selection-start-column="49" selection-end-line="347" selection-end-column="49" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GameBoard.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="13" column="5" lean-forward="true" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
+        <state relative-caret-position="68">
+          <caret line="4" column="32" selection-start-line="4" selection-start-column="32" selection-end-line="4" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -681,24 +713,69 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Player.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="21" column="31" lean-forward="true" selection-start-line="21" selection-start-column="31" selection-end-line="21" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Chain Reaction/src/ChainReaction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
-          <caret line="658" lean-forward="true" selection-start-line="658" selection-end-line="658" />
+        <state relative-caret-position="459">
+          <caret line="35" column="30" lean-forward="true" selection-start-line="35" selection-start-column="30" selection-end-line="35" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Ball.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="12" column="59" selection-start-line="12" selection-start-column="59" selection-end-line="12" selection-end-column="59" />
+        <state relative-caret-position="-21">
+          <caret line="5" column="32" selection-start-line="5" selection-start-column="32" selection-end-line="5" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ChainReactionClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="546">
+          <caret line="208" column="11" lean-forward="true" selection-start-line="208" selection-start-column="11" selection-end-line="208" selection-end-column="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#8219#8220#0" expanded="true" />
+            <element signature="e#8252#8253#0" expanded="true" />
+            <element signature="e#8286#8287#0" expanded="true" />
+            <element signature="e#8325#8326#0" expanded="true" />
+            <element signature="e#11207#11208#0" expanded="true" />
+            <element signature="e#11245#11246#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ChainReactionServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="302">
+          <caret line="259" column="30" selection-start-line="154" selection-start-column="8" selection-end-line="264" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#main#0;class#ChainReactionServer#0" />
+            <element signature="docComment;method#doesExplode#0;class#ChainReactionServer#0" />
+            <element signature="method#extraHandshake#0;class#ChainReactionServer#0" />
+            <element signature="e#11821#11822#0" expanded="true" />
+            <element signature="e#11848#11849#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ExplodeEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ChainReactionClientFX.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-342">
+          <caret line="80" column="50" selection-start-line="80" selection-start-column="50" selection-end-line="80" selection-end-column="50" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#14469#14470#0" expanded="true" />
           </folding>
         </state>
       </provider>

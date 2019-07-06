@@ -1,6 +1,5 @@
 
-
-import java.awt.*;
+import javafx.scene.paint.Color;
 import java.util.ArrayList;
 
 /**
@@ -18,13 +17,13 @@ public class Player {
 
     Player(int number, int ID){
         colors[0] = Color.RED;
-        colors[1] = new Color(0, 120, 0);
+        colors[1] = Color.rgb(0, 120, 0);
         colors[2] = Color.BLUE;
         colors[3] = Color.YELLOW;
         colors[4] = Color.WHITE;
         colors[5] = Color.ORANGE;
         colors[6] = Color.MAGENTA;
-        colors[7] = new Color(128,214,255);
+        colors[7] = Color.rgb(128,214,255);
         colors[8] = Color.BLACK;
         playerColor = colors[number];
         playerNumber = number;
